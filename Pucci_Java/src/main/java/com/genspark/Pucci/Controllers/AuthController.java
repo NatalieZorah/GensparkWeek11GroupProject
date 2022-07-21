@@ -78,6 +78,8 @@ public class AuthController {
         .collect(Collectors.toList());
     System.out.println(loginRequest.getUsername());
 
+    System.out.println(loginRequest.getUsername());
+
     return ResponseEntity.ok(new JwtResponse(jwt,
                          userDetails.getId(), 
                          userDetails.getUsername(), 

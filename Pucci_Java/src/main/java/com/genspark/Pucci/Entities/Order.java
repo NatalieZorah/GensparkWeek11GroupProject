@@ -39,7 +39,7 @@ public class Order {
     public Order(){}
 
     public Order(List<Product> purchase_list, double purchase_total, int user_id) {
-//        this.purchase_list = purchase_list;
+        this.purchase_list = purchase_list;
         this.purchase_total = purchase_total;
         this.user_id = user_id;
     }
