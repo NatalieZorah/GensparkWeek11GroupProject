@@ -28,8 +28,11 @@
 }
 
 .login-text-input-wrapper {
+    display: flex;
+    flex-direction: column;
     align-self: center;
     width: 300px;
+    margin-bottom: 20px;
 }
 
 .login-content input[type="text"], .login-content input[type="password"]{
@@ -73,6 +76,7 @@
     color: black;
     align-self: center;
     font-size: 14px;
+    margin-top: -20px;
 }
 
 /* Can uncomment this back when the button comes back */
@@ -85,6 +89,11 @@
     left: 97.5%;
     top: -18px
 } */
+
+.error-container {
+    text-align: center;
+    margin-top: 15px;
+}
 
 .error-message {
     color:red;

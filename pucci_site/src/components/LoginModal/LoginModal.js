@@ -20,7 +20,6 @@ const LoginModal = props => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit");
 
     //Reset any axisting errors
     setFormErrors({ ...formErrors, username: "", password: "" });
@@ -59,9 +58,10 @@ const LoginModal = props => {
       setFormErrors({ username: "Username can only contain alphanumeric characters, dashes, periods, and underscores." });
     }
 
-    if (values.password && values.password.length < 8) {
-      setFormErrors({ password: "Password must be at least 8 characters long." });
-    }
+    //Commented out for testing purposes. Uncomment for production.
+    // if (values.password && values.password.length < 8) {
+    //   setFormErrors({ password: "Password must be at least 8 characters long." });
+    // }
   };
 
   return (
@@ -81,8 +81,10 @@ const LoginModal = props => {
               <h2 className='login-header'> Sign In</h2>
             </div>
 
-            {(formErrors.username !== "") ? (<div className="error-message">{formErrors.username}</div>) : ""}
-            {(formErrors.password !== "") ? (<div className="error-message">{formErrors.password}</div>) : ""}
+            <div className="error-container">
+              {(formErrors.username !== "") ? (<div className="error-message">{formErrors.username}</div>) : ""}
+              {(formErrors.password !== "") ? (<div className="error-message">{formErrors.password}</div>) : ""}
+            </div>
 
             <form onSubmit={onSubmit} className="login-text-input-wrapper">
 
