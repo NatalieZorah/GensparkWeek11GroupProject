@@ -14,7 +14,7 @@ const Navigation = props => {
             <h1 className="title pucci-logo">P U C C I </h1>
               <div className="nav-user-btn-container">
                 {props.currentUser ? (
-                  <button className='nav-login-btn' onClick={props.logout}>
+                  <button className='nav-login-btn' onClick={props.Logout}>
                     Logout
                   </button>
                 ) : (

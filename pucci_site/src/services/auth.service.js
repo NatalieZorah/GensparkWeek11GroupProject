@@ -9,7 +9,9 @@ class AuthService {
 					localStorage.setItem("user", JSON.stringify(response.data))
 				}
 				return response.data
-			})
+			}).catch((error) => {
+				console.log("Error: Unauthorized credentials", error);
+			});
 	}
 	logout() {
 		localStorage.removeItem("user")
