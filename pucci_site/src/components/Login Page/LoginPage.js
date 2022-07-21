@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 import Button from 'react-bootstrap/esm/Button';
 import "./LoginPage.css";
 import AuthService from '../../services/auth.service';
-import { useDispatch } from 'react-redux';
-import {login} from '../../slices/authSlice'
 
 const LoginPage = props => {
 
@@ -19,7 +17,6 @@ const LoginPage = props => {
   const [formValues, setFormValues] = useState(initValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,14 +28,9 @@ const LoginPage = props => {
     setFormErrors(validate(formValues));
     setFormPlaceholders(validate(formValues));
     setIsSubmit(true);
-    dispatch(login({
-      "username": formValues.username,
-      "password": formValues.password
-    }))
-    props.handleClose();
-    // AuthService.login(formValues.username, formValues.password)
-    //   .then((res) => props.setCurrentUser(res))
-    //   .finally(props.handleClose());
+    AuthService.login(formValues.username, formValues.password)
+      .then((res) => props.setCurrentUser(res))
+      .finally(props.handleClose());
   };
 
   useEffect(() => {

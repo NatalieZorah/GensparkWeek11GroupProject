@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import Modal from 'react-modal';
-import './RegisterPage.css';
+import './RegisterModal.css';
 
 
-const RegisterPage = props => {
+const RegisterModal = props => {
 
     const modalPosition = React.useState('center');
     const modalSize = React.useState('medium');
@@ -175,4 +175,4 @@ const RegisterPage = props => {
     )
 }
 
-export default RegisterPage
+export default RegisterModal
