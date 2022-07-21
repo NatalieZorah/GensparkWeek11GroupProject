@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import Button from 'react-bootstrap/esm/Button';
 import "./LoginModal.css";
 import AuthService from '../../services/auth.service';
+import PulseLoader from "react-spinners/PulseLoader";
 
 const LoginModal = props => {
 
@@ -10,6 +11,7 @@ const LoginModal = props => {
   const modalSize = React.useState('small');
   const [formValues, setFormValues] = useState({ username: "", password: "" });
   const [formErrors, setFormErrors] = useState({ username: "", password: "" });
+  const [loginWait, setLoginWait] = useState(false);
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +29,7 @@ const LoginModal = props => {
     validate(formValues);
     if (formErrors.username === "" && formErrors.password === "") {
       //Validation passed
+      setLoginWait(true);
       AuthService.login(formValues.username, formValues.password)
         .then((response) => {
           console.log(response);
@@ -36,9 +39,11 @@ const LoginModal = props => {
               username: formValues.username,
               password: formValues.password
             });
+            setLoginWait(false);
             props.handleClose();
           } else {
             //Credentials not found.
+            setLoginWait(false);
           }
         });
     } else {
@@ -51,11 +56,11 @@ const LoginModal = props => {
     const userRegex = /^[a-zA-Z0-9_.-]+$/;
 
     if (values.username && !userRegex.test(values.username)) {
-      formErrors.username = "Username can only contain alphanumeric characters, dashes, periods, and underscores.";
+      setFormErrors({ username: "Username can only contain alphanumeric characters, dashes, periods, and underscores." });
     }
 
     if (values.password && values.password.length < 8) {
-      formErrors.password = "Password must be at least 8 characters long.";
+      setFormErrors({ password: "Password must be at least 8 characters long." });
     }
   };
 
@@ -76,7 +81,8 @@ const LoginModal = props => {
               <h2 className='login-header'> Sign In</h2>
             </div>
 
-            { (formErrors.username !== "" || formErrors.password !== "") ? (<div className="error-message">{formErrors.username} {formErrors.password}</div>) : ""}
+            {(formErrors.username !== "") ? (<div className="error-message">{formErrors.username}</div>) : ""}
+            {(formErrors.password !== "") ? (<div className="error-message">{formErrors.password}</div>) : ""}
 
             <form onSubmit={onSubmit} className="login-text-input-wrapper">
 
@@ -97,7 +103,7 @@ const LoginModal = props => {
               </div>
 
               <div className="login-btn-wrapper">
-                <Button className="login-btn" type="submit">Sign in</Button>
+                <Button className="login-btn" type="submit">{(loginWait) ? (<span>Signing in<PulseLoader color="#e5dfd9" size="4" /></span>) : (<span>Sign in</span>)}</Button>
               </div>
             </form>
 
