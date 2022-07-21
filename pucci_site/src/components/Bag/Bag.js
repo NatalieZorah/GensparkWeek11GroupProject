@@ -10,20 +10,28 @@ export default function Bag(props) {
 
 	const displayCart = cart.map((product, index) => {
 		subtotal += parseInt(product.price, 10)
-		return <div key={index}>{product.title} {product.price}</div>
+		return <div className='bag-product' key={index}>
+					<div>
+						{product.title}
+					</div>
+					<div>
+						Price: ${product.price}
+					</div>
+				</div>
 	})
 
   return (
-	<div>
-		<div className="bag-div">
-			<div>
-				<h1>Shopping Bag</h1>
-			</div>
-			<div>displayCart {displayCart}</div>
-			<div>{subtotal}</div>
-			<button>Checkout</button>
+	<>
+		<div className='bag-title'>
+			<h1>Shopping Bag</h1>
 		</div>
-	</div>
+		<div className="bag-container">
+			
+			<div className='bag-cart'>{displayCart}</div>
+			<div className='bag-subtotal'>Subtotal ${subtotal}</div>
+			<button className='btn btn-success'>Checkout</button>
+		</div>
+	</>
   )
 }
 

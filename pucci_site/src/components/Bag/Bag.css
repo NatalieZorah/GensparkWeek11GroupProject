@@ -1,6 +1,26 @@
-.bag-modal {
-	height: 40%;
-	width: 40%;
-	position: relative;
-	z-index: 2;
+.bag-container {
+	font-family: sans-serif;
+	height: 65.5vh;
+	display: grid;
+	grid-template-rows: 80% 10% 10%;
+}
+.bag-product {
+	display: grid;
+	justify-items: start;
+	padding: 0px 20px;
+	grid-template-columns: 90% 10%;
+	margin: 1em 0px;
+	height: 2em;
+	font-weight: bold;
+}
+
+.bag-title {
+	grid-column: 1 / 3;
+}
+.bag-subtotal {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-items: end;
+	padding: 0 5%;
+	font-weight: bolder;
 }
