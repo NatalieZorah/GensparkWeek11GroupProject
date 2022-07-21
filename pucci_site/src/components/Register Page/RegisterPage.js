@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import Modal from 'react-modal';
 import './RegisterPage.css';
+<<<<<<< refs/remotes/awsaylot/main
+=======
+import UserService from '../../services/user.service'
+>>>>>>> adding cart and redux
 
 
 const RegisterPage = props => {
@@ -33,6 +37,12 @@ const RegisterPage = props => {
         setFormErrors(validate(formValues));
         setFormPlaceholders(validate(formValues));
         setIsSubmit(true);
+<<<<<<< refs/remotes/awsaylot/main
+=======
+        console.log(formValues)
+        let name = formValues.firstName + " " + formValues.lastName
+        UserService.createUser("computer", name, formValues.username, formValues.password, formValues.email, formValues.phone)
+>>>>>>> adding cart and redux
     };
 
     useEffect(() => {
@@ -121,19 +131,33 @@ const RegisterPage = props => {
                         <div className='personal-info-container'>
                             <p className="personal-info-header">Personal information</p>
                             <div className="field name-field">
+<<<<<<< refs/remotes/awsaylot/main
                                 <input type="text" className="first-name-input" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
                                 <p className="errors">{formErrors.firstName}</p>
                                 <input type="text" className="last-name-input" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
+=======
+                                <input type="text" className="first-name-input" name="firstName" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
+                                <p className="errors">{formErrors.firstName}</p>
+                                <input type="text" className="last-name-input" name="lastName" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
+>>>>>>> adding cart and redux
                                 <p className="errors">{formErrors.lastName}</p>
                             </div>
 
                             <div className="field">
+<<<<<<< refs/remotes/awsaylot/main
                                 <input type="text" className="email" placeholder={formPlaceholders.email} defaultValue={formValues.email} onChange={handleChange} required />
+=======
+                                <input type="text" className="email" name="email" placeholder={formPlaceholders.email} defaultValue={formValues.email} onChange={handleChange} required />
+>>>>>>> adding cart and redux
                                 <p className="errors">{formErrors.email}</p>
                             </div>
 
                             <div className="field">
+<<<<<<< refs/remotes/awsaylot/main
                                 <input type="text" className="phone" placeholder={formPlaceholders.phone} defaultValue={formValues.phone} onChange={handleChange} required />
+=======
+                                <input type="text" className="phone" name="phone" placeholder={formPlaceholders.phone} defaultValue={formValues.phone} onChange={handleChange} required />
+>>>>>>> adding cart and redux
                                 <p className="errors">{formErrors.phone}</p>
                             </div>
                         </div>
@@ -142,17 +166,29 @@ const RegisterPage = props => {
                             <p className="login-info-header">Sign in information</p>
 
                             <div className="field">
+<<<<<<< refs/remotes/awsaylot/main
                                 <input type="text" className="username" placeholder={formPlaceholders.username} defaultValue={formValues.username} onChange={handleChange} required />
+=======
+                                <input type="text" className="username" name="username" placeholder={formPlaceholders.username} defaultValue={formValues.username} onChange={handleChange} required />
+>>>>>>> adding cart and redux
                                 <p className="errors">{formErrors.username}</p>
                             </div>
 
                             <div className="field">
+<<<<<<< refs/remotes/awsaylot/main
                                 <input type="text" className="password" placeholder={formPlaceholders.password} defaultValue={formValues.password} onChange={handleChange} required />
+=======
+                                <input type="text" className="password" name="password" placeholder={formPlaceholders.password} defaultValue={formValues.password} onChange={handleChange} required />
+>>>>>>> adding cart and redux
                                 <p className="errors">{formErrors.password}</p>
                             </div>
 
                             <div className="field">
+<<<<<<< refs/remotes/awsaylot/main
                                 <input type="text" className="password" placeholder={formPlaceholders.password2} defaultValue={formValues.password2} onChange={handleChange} required />
+=======
+                                <input type="text" className="password" name="password2" placeholder={formPlaceholders.password2} defaultValue={formValues.password2} onChange={handleChange} required />
+>>>>>>> adding cart and redux
                                 <p className="errors">{formErrors.password2}</p>
                             </div>
 

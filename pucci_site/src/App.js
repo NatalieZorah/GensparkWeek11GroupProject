@@ -84,7 +84,13 @@ function App() {
     setRegister(true);
   };
 
+<<<<<<< refs/remotes/awsaylot/main
 
+=======
+  const toggleBag = () => {
+    setOpenBag(!openBag)
+  }
+>>>>>>> adding cart and redux
 
   return (
     <div className="App">
@@ -95,6 +101,7 @@ function App() {
           onRegisterClick={toggleRegister}
           onLogoutClick={Logout}
           currentUser={currentUser}
+          onBagClick={toggleBag}
         />
 
         {isOpen &&
@@ -116,11 +123,22 @@ function App() {
             error={registerError}
           />
         }
+<<<<<<< refs/remotes/awsaylot/main
         
         <Routes>
           <Route index element={<Home />} />
           <Route path="bag" element={<Bag />} />
         </Routes>
+=======
+        {openBag &&
+          <Bag 
+            modalIsOpen={openBag} 
+            handleClose={toggleBag}
+          />
+        }
+
+        <Home />
+>>>>>>> adding cart and redux
       </BrowserRouter>
       <Footer />
     </div>
