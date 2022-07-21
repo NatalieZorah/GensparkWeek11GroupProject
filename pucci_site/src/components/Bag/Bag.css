@@ -1,0 +1,6 @@
+.bag-modal {
+	height: 40%;
+	width: 40%;
+	position: relative;
+	z-index: 2;
+}

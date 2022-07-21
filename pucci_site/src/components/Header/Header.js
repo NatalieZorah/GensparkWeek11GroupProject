@@ -25,7 +25,7 @@ const Navigation = props => {
                 )}
                 
                 <button className='nav-favorites-btn'><IoMdHeartEmpty className="nav-favorites-btn-icon"/></button>
-                <button className='nav-bag-btn'><BsBag className="nav-bag-btn-icon"/>Bag</button>
+                <button className='nav-bag-btn' onClick={props.onBagClick}><BsBag className="nav-bag-btn-icon"/>Bag</button>
                 <button className='nav-search-btn'><BiSearch className="nav-search-btn-icon"/></button>
               </div>
             <nav>
@@ -81,6 +81,7 @@ const Header = props => {
         onRegisterClick={props.onRegisterClick}
         currentUser={props.currentUser}
         logout={logout}
+        onBagClick={props.onBagClick}
       />
     </div>
   )

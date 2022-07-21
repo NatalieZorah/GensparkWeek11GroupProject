@@ -1,4 +1,6 @@
 import axios from "axios";
+import {useDispatch} from 'react-redux'
+import {addUser} from '../slices/authSlice'
 const API_URL = "http://localhost:8080/api/auth/"
 class AuthService {
 	login(username, password) {

@@ -3,19 +3,22 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { IoMdHeartEmpty } from "react-icons/io";
 import './ProductCard.css';
+import {useDispatch} from 'react-redux'
+import {addToCart} from '../../slices/cartSlice'
 
-function ProductCard() {
+function ProductCard(props) {
+  const dispatch = useDispatch();
   return (
     <>
       <IoMdHeartEmpty className="empty-heart-icon" />
       <Card>
         <Card.Img variant="top" src="https://dummyimage.com/300" />
         <Card.Body>
-          <Card.Title>Product</Card.Title>
+          <Card.Title>{props.product.title}</Card.Title>
           <Card.Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {props.product.description}
           </Card.Text>
-          <Button variant="outline-dark">Add to cart</Button>
+          <Button variant="outline-dark" onClick={() => dispatch(addToCart(props.product))}>Add to cart</Button>
         </Card.Body>
       </Card>
     </>

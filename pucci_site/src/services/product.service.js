@@ -4,15 +4,16 @@ class ProductService {
 
     PRODUCTS_URL = '/products';
 
-    getAllProducts() {
-        return axios.get(
-            this.PRODUCTS_URL
-        ).then(function (response) {
-            console.log(response)
-            return response.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
+    getAllProducts = async () => {
+        try {
+            let response = await axios.get(
+                this.PRODUCTS_URL
+            )
+            let responseData = await response.data;
+            return responseData
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     getProductById(product_id) {

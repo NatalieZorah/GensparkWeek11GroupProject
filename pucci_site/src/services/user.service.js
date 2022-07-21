@@ -2,7 +2,7 @@ import axios from "axios";
 
 class UserService {
 
-    USERS_URL = '/users';
+    USERS_URL = 'http://localhost:8080/api/users';
 
     getAllUsers() {
         return axios.get(
@@ -32,20 +32,24 @@ class UserService {
     }
 
     createUser(sign_in_type, name, username, password, email, phone) {
+        let payload = {
+            sign_in_type,
+            name,
+            username,
+            password,
+            email,
+            phone
+        }
+        console.log(payload)
         return axios.post(
-            this.USERS_URL,
+            'http://localhost:8080/api/auth' + '/signup',
             {
-                headers: { 'Content-Type': 'application/json' },
-                data:
-                {
-                    sign_in_type: sign_in_type,
-                    name: name,
-                    username: username,
-                    password: password,
-                    email: email,
-                    phone: phone
-                }
-
+                sign_in_type,
+                name,
+                username,
+                password,
+                email,
+                phone
             }
         ).then(function (response) {
             console.log(response)

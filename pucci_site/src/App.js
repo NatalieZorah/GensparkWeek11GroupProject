@@ -83,6 +83,10 @@ function App() {
     setRegister(true);
   };
 
+  const toggleBag = () => {
+    setOpenBag(!openBag)
+  }
+
   return (
     <div className="App">
 
@@ -92,6 +96,7 @@ function App() {
           onRegisterClick={toggleRegister}
           onLogoutClick={Logout}
           currentUser={currentUser}
+          onBagClick={toggleBag}
         />
 
         {isOpen &&
@@ -111,6 +116,12 @@ function App() {
             handleClose={toggleRegister}
             onSubmit={RegisterAccount}
             error={registerError}
+          />
+        }
+        {openBag &&
+          <Bag 
+            modalIsOpen={openBag} 
+            handleClose={toggleBag}
           />
         }
 
