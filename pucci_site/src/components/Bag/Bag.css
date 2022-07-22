@@ -1,4 +1,3 @@
-<<<<<<< refs/remotes/awsaylot/main
 .bag-container {
 	font-family: sans-serif;
 	height: 65.5vh;
@@ -25,11 +24,3 @@
 	padding: 0 5%;
 	font-weight: bolder;
 }
-=======
-.bag-modal {
-	height: 40%;
-	width: 40%;
-	position: relative;
-	z-index: 2;
-}
->>>>>>> adding cart and redux
