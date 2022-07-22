@@ -6,14 +6,11 @@ import './CardGrid.css';
 import ProductService from '../../services/product.service'
 
 const products = [
-    {id: 1, title: "Jacket", description: "Plaid jacket"},
-    {id: 2, title: "Sunglasses", description: "Fancy sungladsses"},
-    {id: 3, title: "Sunglasses", description: "Fancy sungladsses"},
-    {id: 4, title: "Sunglasses", description: "Fancy sungladsses"},
-    {id: 5, title: "Sunglasses", description: "Fancy sungladsses"},
-    {id: 6, title: "Sunglasses", description: "Fancy sungladsses"},
-    {id: 7, title: "Sunglasses", description: "Fancy sungladsses"},
-    {id: 8, title: "Sunglasses", description: "Fancy sungladsses"},
+    {id: 1, title: "Jacket", description: "Plaid jacket", price: "200"},
+    {id: 2, title: "Sunglasses", description: "Fancy sungladsses", price: "400"},
+    {id: 3, title: "Shoes", description: "Fancy sungladsses", price: "400"},
+    {id: 5, title: "Hat", description: "Fancy sungladsses", price: "400"},
+
 ];
 
 function CardGrid() {

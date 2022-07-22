@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMdHeartEmpty } from "react-icons/io";
 import {BsBag} from "react-icons/bs";
 import {BiSearch} from "react-icons/bi";
+import Bag from '../Bag/Bag'
 import "./Header.css";
-
+import BagHover from '../Bag/BagHover';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = props => {
+  const [isHover, setIsHover] = useState(false)
+  const handleMouseOver = () => {
+    setIsHover(true)
+  }
+  const handleMouseOut = () => {
+    setIsHover(false)
+  }
+  const handleBagClick = (e) => {
+    e.preventDefault()
+    navigate("/bag")
+  }
+  const navigate = useNavigate()
   return (
     <div className="navigation">
       <div className="container">
@@ -25,8 +39,10 @@ const Navigation = props => {
                 )}
                 
                 <button className='nav-favorites-btn'><IoMdHeartEmpty className="nav-favorites-btn-icon"/></button>
-                <button className='nav-bag-btn' onClick={props.onBagClick}><BsBag className="nav-bag-btn-icon"/>Bag</button>
+                <button className='nav-bag-btn' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleBagClick} ><BsBag className="nav-bag-btn-icon"/>Bag</button>
                 <button className='nav-search-btn'><BiSearch className="nav-search-btn-icon"/></button>
+                {isHover && 
+                <BagHover />}
               </div>
             <nav>
               <ul className="nav nav-tabs">
@@ -70,10 +86,21 @@ const Navigation = props => {
 }
 
 const Header = props => {
+
+
+  const toggleBag = () => {
+    setOpenBag(!openBag)
+  }
+
   const logout= (e) => {
     localStorage.removeItem("user");
     window.location.reload();
   }
+
+  const bag = {
+    
+  }
+
   return (
     <div className="header-container">
       <Navigation 
@@ -83,6 +110,7 @@ const Header = props => {
         logout={logout}
         onBagClick={props.onBagClick}
       />
+
     </div>
   )
 }

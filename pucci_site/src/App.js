@@ -7,12 +7,13 @@ import RegisterModal from './components/RegisterModal/RegisterModal';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MailService from './services/mail.service';
 import UserService from './services/user.service';
 import OrderService from './services/order.service';
 import ProductService from './services/product.service';
 import AuthService from './services/auth.service';
+import Bag from './components/Bag/Bag';
 Modal.setAppElement('#root');
 
 function App() {
@@ -83,9 +84,7 @@ function App() {
     setRegister(true);
   };
 
-  const toggleBag = () => {
-    setOpenBag(!openBag)
-  }
+
 
   return (
     <div className="App">
@@ -96,7 +95,6 @@ function App() {
           onRegisterClick={toggleRegister}
           onLogoutClick={Logout}
           currentUser={currentUser}
-          onBagClick={toggleBag}
         />
 
         {isOpen &&
@@ -118,14 +116,11 @@ function App() {
             error={registerError}
           />
         }
-        {openBag &&
-          <Bag 
-            modalIsOpen={openBag} 
-            handleClose={toggleBag}
-          />
-        }
-
-        <Home />
+        
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="bag" element={<Bag />} />
+        </Routes>
       </BrowserRouter>
       <Footer />
     </div>
