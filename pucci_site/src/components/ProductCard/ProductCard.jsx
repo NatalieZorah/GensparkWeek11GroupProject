@@ -5,7 +5,6 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import './ProductCard.css';
 import {useDispatch} from 'react-redux'
 import {addToCart} from '../../slices/cartSlice'
-<<<<<<< refs/remotes/awsaylot/main
 import Toast from 'react-bootstrap/Toast';
 
 function ProductCard(props) {
@@ -16,11 +15,6 @@ function ProductCard(props) {
     dispatch(addToCart(props.product))
     setShow(true)
   }
-=======
-
-function ProductCard(props) {
-  const dispatch = useDispatch();
->>>>>>> adding cart and redux
   return (
     <>
       <IoMdHeartEmpty className="empty-heart-icon" />
@@ -34,11 +28,7 @@ function ProductCard(props) {
           <Card.Text>
             {props.product.description}
           </Card.Text>
-<<<<<<< refs/remotes/awsaylot/main
           <Button variant="outline-dark" onClick={handleAddToCart}>Add to cart</Button>
-=======
-          <Button variant="outline-dark" onClick={() => dispatch(addToCart(props.product))}>Add to cart</Button>
->>>>>>> adding cart and redux
         </Card.Body>
       </Card>
     </>

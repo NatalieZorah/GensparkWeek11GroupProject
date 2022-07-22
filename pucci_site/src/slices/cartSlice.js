@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-<<<<<<< refs/remotes/awsaylot/main
 	cart: []
-=======
->>>>>>> adding cart and redux
 }
 
 export const cartSlice = createSlice({
@@ -15,11 +12,7 @@ export const cartSlice = createSlice({
 
 		},
 		addToCart: (state, action) => {
-<<<<<<< refs/remotes/awsaylot/main
 			state.cart.push(action.payload) 
-=======
-			state[action.payload.title] = action.payload
->>>>>>> adding cart and redux
 		},
 		removeFromCart: (state, action) => {
 

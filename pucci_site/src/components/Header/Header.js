@@ -39,11 +39,7 @@ const Navigation = props => {
                 )}
                 
                 <button className='nav-favorites-btn'><IoMdHeartEmpty className="nav-favorites-btn-icon"/></button>
-<<<<<<< refs/remotes/awsaylot/main
                 <button className='nav-bag-btn' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleBagClick} ><BsBag className="nav-bag-btn-icon"/>Bag</button>
-=======
-                <button className='nav-bag-btn' onClick={props.onBagClick}><BsBag className="nav-bag-btn-icon"/>Bag</button>
->>>>>>> adding cart and redux
                 <button className='nav-search-btn'><BiSearch className="nav-search-btn-icon"/></button>
                 {isHover && 
                 <BagHover />}
@@ -92,9 +88,6 @@ const Navigation = props => {
 const Header = props => {
 
 
-  const toggleBag = () => {
-    setOpenBag(!openBag)
-  }
 
   const logout= (e) => {
     localStorage.removeItem("user");
