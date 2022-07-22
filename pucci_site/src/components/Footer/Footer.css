@@ -1,8 +1,8 @@
 .footer-container {
-    font-family: Roboto-Regular;
-    padding: 50px;
-    background-color: #1b1b1bf2;
-    color: #e5dfd9;
-    width: 100%;
-    font-size: 12px;
+  font-family: Roboto-Regular;
+  padding: 50px;
+  background-color: var(--pucci-color-dark);
+  color: var(--pucci-color-light);
+  width: 100%;
+  font-size: 12px;
 }

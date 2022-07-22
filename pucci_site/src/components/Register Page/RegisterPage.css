@@ -1,99 +1,102 @@
 .reg-box {
-    width: 60%;
-    height: 75%;
-    background-color: white;
-    color: black;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 5%;
-    padding: 20px;
-    box-shadow: 0 0 75px #1b1b1b;
-    font-family: OpenSans-Regular,sans-serif;
+  width: 60%;
+  height: 75%;
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 20px;
+  box-shadow: 0 0 75px var(--pucci-color-dark);
+  font-family: OpenSans-Regular, sans-serif;
 }
 
 .reg-content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .register-header-container {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.personal-info-container, .login-info-container {
-    margin-top: 20px;
+.personal-info-container,
+.login-info-container {
+  margin-top: 20px;
 }
 
-.login-info-header , .personal-info-header {
-    color: black;
-    margin-bottom: 5px;
+.login-info-header,
+.personal-info-header {
+  color: black;
+  margin-bottom: 5px;
 }
 
 .register-text-input-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .register-text-input-wrapper input[type="text"] {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    border-width: thin;
-    padding: 5px;
-    width: 100%;
-    text-align: center;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-width: thin;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
 }
 
 .name-field {
-    display: flex;
-    margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 20px;
 }
 
-.first-name-input, .last-name-input {
-    width: 98%;
+.first-name-input,
+.last-name-input {
+  width: 98%;
 }
 
 .first-name-input {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .register-checkbox-input-wrapper {
-    text-align: center;
-    margin-top: 15px;
+  text-align: center;
+  margin-top: 15px;
 }
 
 input[type="checkbox"] {
-    position: relative;
-    margin-right: 5px;
-    top: 2px;
+  position: relative;
+  margin-right: 5px;
+  top: 2px;
 }
 
 .register-btn-wrapper {
-    margin-bottom: 20px;
-    width: 200px;
-    margin: 0 auto;
+  margin-bottom: 20px;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .register-btn {
-    width: 100%;
-    background-color: black;
-    color: white;
-    border-color: transparent;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    margin-top: 20px;
+  width: 100%;
+  background-color: var(--pucci-color-dark);
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
-.register-btn:hover { 
-    background-color: #1b1b1b;
-    border-color: #1b1b1b;
-    color: #e5dfd9;
+.register-btn:hover {
+  background-color: var(--pucci-color-dark);
+  border-color: var(--pucci-color-dark);
+  color: var(--pucci-color-light);
 }
 
 .errors {
-    color: red;
+  color: red;
 }

@@ -1,78 +1,78 @@
 .login-box {
-    width: 40%;
-    height: 75%;
-    background-color: white;
-    color: #e5dfd9;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 10%;
-    padding: 20px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    box-shadow: 0 0 75px #1b1b1b;
-    font-family: OpenSans-Regular,sans-serif;
+  width: 40%;
+  height: 75%;
+  background-color: white;
+  color: #e5dfd9;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-shadow: 0 0 75px var(--pucci-color-dark);
+  font-family: OpenSans-Regular, sans-serif;
 }
 
 .login-content {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
 
 .login-header-container {
-    color: black;
-    font-family: OpenSans-Regular,sans-serif;
-    text-align: center;
+  color: black;
+  font-family: OpenSans-Regular, sans-serif;
+  text-align: center;
 }
 
 .login-text-input-wrapper {
-    align-self: center;
-    width: 300px;
+  align-self: center;
+  width: 300px;
 }
 
-.login-content input[type="text"]{
-    width: 100%;
-    margin-top: 20px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    text-align: center;
+.login-content input[type="text"] {
+  width: 100%;
+  margin-top: 20px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .login-checkbox-input-wrapper {
-    color: black;
-    align-self: center;
-    margin-bottom: 20px;
+  color: black;
+  align-self: center;
+  margin-bottom: 20px;
 }
 
 .login-btn-wrapper {
-    align-self: center;
-    margin-bottom: 20px;
-    width: 200px;
+  align-self: center;
+  margin-bottom: 20px;
+  width: 200px;
 }
 
 .login-btn {
-    display: block;
-    width: 100%;
-    background-color: black;
-    color: white;
-    border-color: transparent;
-    border-radius: 5px;
+  display: block;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
 }
 
-.login-btn:hover { 
-    /* These are the colors GUCCI uses for everything - buttons, nav, and footer */
-    background-color: #1b1b1b;
-    border-color: #1b1b1b;
-    color: #e5dfd9;
+.login-btn:hover {
+  /* These are the colors GUCCI uses for everything - buttons, nav, and footer */
+  background-color: var(--pucci-color-dark);
+  border-color: var(--pucci-color-dark);
+  color: var(--pucci-color-light);
 }
 
 .no-account-message {
-    color: black;
-    align-self: center;
-    font-size: 14px;
+  color: black;
+  align-self: center;
+  font-size: 14px;
 }
 
 /* Can uncomment this back when the button comes back */
@@ -87,5 +87,5 @@
 } */
 
 .errors {
-    color:red;
+  color: red;
 }

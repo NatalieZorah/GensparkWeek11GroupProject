@@ -1,8 +1,12 @@
-.App {
+:root {
+  --pucci-color-dark: #1b1b1b;
+  --pucci-color-light: #e5dfd9;
+}
 
+.App {
+  color: black;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-
   text-align: center;
 }
