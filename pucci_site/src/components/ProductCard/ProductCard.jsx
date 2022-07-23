@@ -1,8 +1,8 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import { IoMdHeartEmpty } from "react-icons/io";
-import './ProductCard.css';
+import "./ProductCard.css";
 
 function ProductCard() {
   return (
@@ -13,7 +13,8 @@ function ProductCard() {
         <Card.Body>
           <Card.Title>Product</Card.Title>
           <Card.Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Card.Text>
           <Button variant="outline-dark">Add to cart</Button>
         </Card.Body>

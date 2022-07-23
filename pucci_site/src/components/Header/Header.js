@@ -1,64 +1,114 @@
-import React from 'react'
+import React from "react";
+import { NavLink } from "react-router-dom";
 import { IoMdHeartEmpty } from "react-icons/io";
-import {BsBag} from "react-icons/bs";
-import {BiSearch} from "react-icons/bi";
+import { BsBag } from "react-icons/bs";
+import { BiSearch } from "react-icons/bi";
 import "./Header.css";
 
-
-const Navigation = props => {
+const Navigation = (props) => {
   return (
     <div className="navigation">
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12">
-            <h1 className="title pucci-logo">P U C C I </h1>
-              <div className="nav-user-btn-container">
-                {props.currentUser ? (
-                  <button className='nav-login-btn' onClick={props.logout}>
-                    Logout
-                  </button>
-                ) : (
+            <h1 className="title pucci-logo">P U C C I</h1>
+            <div className="nav-user-btn-container">
+              {props.currentUser ? (
+                <button className="nav-login-btn" onClick={props.logout}>
+                  Logout
+                </button>
+              ) : (
                 <>
-                    <button className='nav-login-btn' onClick={props.onLoginClick}>Sign in</button>
-                    <button className='nav-register-btn' onClick={props.onRegisterClick}>Register</button>
+                  <button
+                    className="nav-login-btn"
+                    onClick={props.onLoginClick}
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    className="nav-register-btn"
+                    onClick={props.onRegisterClick}
+                  >
+                    Register
+                  </button>
                 </>
-                )}
-                
-                <button className='nav-favorites-btn'><IoMdHeartEmpty className="nav-favorites-btn-icon"/></button>
-                <button className='nav-bag-btn'><BsBag className="nav-bag-btn-icon"/>Bag</button>
-                <button className='nav-search-btn'><BiSearch className="nav-search-btn-icon"/></button>
-              </div>
+              )}
+
+              <button className="nav-favorites-btn">
+                <IoMdHeartEmpty className="nav-favorites-btn-icon" />
+              </button>
+              <button className="nav-bag-btn" href="/cart">
+                <BsBag className="nav-bag-btn-icon" />
+                Bag
+              </button>
+              <button className="nav-search-btn">
+                <BiSearch className="nav-search-btn-icon" />
+              </button>
+            </div>
             <nav>
               <ul className="nav nav-tabs">
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">ADIDOGS X PUCCI</a>
+                  {/* for the moment all links point to google so that they arent all highlighted as active, as the pages are added
+                they can just be changed to the proper link as noted in the comment above each link */}
+
+                  {/* /adidogs */}
+                  <NavLink className="nav-link" to="Google.com">
+                    ADIDOGS X PUCCI
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">WHAT'S NEW</a>
+                  {/* /whats-new */}
+                  <NavLink className="nav-link" to="Google.com">
+                    WHAT'S NEW
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">HANDBAGS</a>
+                  {/* /handbags */}
+                  <NavLink className="nav-link" to="Google.com">
+                    HANDBAGS
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">DOGS</a>
+                  {/* /dogos */}
+                  <NavLink className="nav-link" to="Google.com">
+                    DOGS
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">CATS</a>
+                  {/* /kitties */}
+                  <NavLink className="nav-link" to="Google.com">
+                    CATS
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">JEWELRY AND WATCHES</a>
+                  {/* /bling */}
+                  <NavLink className="nav-link" to="Google.com">
+                    JEWELRY AND WATCHES
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">BEAUTY</a>
+                  {/* /beauty */}
+                  <NavLink className="nav-link" to="Google.com">
+                    BEAUTY
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">SHOES</a>
+                  {/* /shoes */}
+                  <NavLink className="nav-link" to="Google.com">
+                    SHOES
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">DECOR & LIFESTYLE</a>
+                  {/* /decor-&-lifestyle */}
+                  <NavLink className="nav-link" to="Google.com">
+                    DECOR & LIFESTYLE
+                  </NavLink>
                 </li>
                 <li className="nav-tabs-header">
-                  <a className="nav-link" href="#">GIFTS</a>
+                  {/* /gifts */}
+                  <NavLink className="nav-link" to="Google.com">
+                    GIFTS
+                  </NavLink>
                 </li>
               </ul>
             </nav>
@@ -66,24 +116,24 @@ const Navigation = props => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const Header = props => {
-  const logout= (e) => {
+const Header = (props) => {
+  const logout = (e) => {
     localStorage.removeItem("user");
     window.location.reload();
-  }
+  };
   return (
-    <div className="header-container">
-      <Navigation 
+    <div className="header-container grid-col-span-8">
+      <Navigation
         onLoginClick={props.onLoginClick}
         onRegisterClick={props.onRegisterClick}
         currentUser={props.currentUser}
         logout={logout}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
