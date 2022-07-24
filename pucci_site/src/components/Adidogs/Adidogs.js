@@ -1,8 +1,6 @@
 import React from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import ProductCard from "../ProductCard/ProductCard";
-import "./CardGrid.css";
+import "./Adidogs.css";
 
 const products = [
   { id: 1, title: "Jacket", description: "Plaid jacket" },
@@ -15,25 +13,16 @@ const products = [
   { id: 8, title: "Sunglasses", description: "Fancy sungladsses" },
 ];
 
-function CardGrid() {
+const Adidogs = () => {
   return (
-    <div className="cardgrid-container">
+    <div className="adidogs-container">
       {products.map((product) => (
-        <span>
+        <span className="grid-col-span-2">
           <ProductCard key={product.id}></ProductCard>
         </span>
       ))}
     </div>
-    // <>
-    //   <Row xs={1} md={2} lg={4}>
-    //     {products.map((product) => (
-    //       <Col key={product.id}>
-    //         <ProductCard />
-    //       </Col>
-    //     ))}
-    //   </Row>
-    // </>
   );
-}
+};
 
-export default CardGrid;
+export default Adidogs;

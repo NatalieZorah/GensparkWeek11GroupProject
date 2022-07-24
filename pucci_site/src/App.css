@@ -1,13 +1,11 @@
 :root {
   --pucci-color-dark: #1b1b1b;
   --pucci-color-light: #e5dfd9;
-  --grid-column-count: 8;
 }
 
 .App {
   color: black;
-  display: grid;
-  grid-template-columns: repeat(var(--grid-column-count), 1fr);
+  display: flex;
 
   flex-direction: column;
   overflow-x: hidden;
@@ -31,20 +29,4 @@
 }
 .grid-col-span-8 {
   grid-column: span 8;
-}
-
-.grid-row-span-2 {
-  grid-row: span 2;
-}
-.grid-row-span-3 {
-  grid-row: span 3;
-}
-.grid-row-span-4 {
-  grid-row: span 4;
-}
-.grid-row-span-5 {
-  grid-row: span 5;
-}
-.grid-row-span-6 {
-  grid-row: span 6;
 }

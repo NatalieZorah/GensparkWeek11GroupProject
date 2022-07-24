@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import Modal from "react-modal";
-import { LoginPage, RegisterPage, Header, Footer, Home } from "./components";
+import {
+  LoginPage,
+  RegisterPage,
+  Header,
+  Footer,
+  Home,
+  Adidogs,
+  NotFound,
+} from "./components";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MailService from "./services/mail.service";
 import UserService from "./services/user.service";
@@ -66,9 +74,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/Adidogs" element={<Adidogs />} />
-          <Route path="/Admin" element={<Admin />} />
-          <Route path="/Cart" element={<Cart />} /> */}
+          <Route path="/adidogs" element={<Adidogs />} />
+          <Route path="/page-not-found" element={<NotFound />} />
+          {/* <Route path="/admin" element={<Admin />} />
+          <Route path="/cart" element={<Cart />} /> */}
         </Routes>
       </Router>
       <Footer />

@@ -6,7 +6,7 @@ import "./ProductCard.css";
 
 function ProductCard() {
   return (
-    <>
+    <div className="product-card-container">
       <IoMdHeartEmpty className="empty-heart-icon" />
       <Card>
         <Card.Img variant="top" src="https://dummyimage.com/300" />
@@ -19,7 +19,7 @@ function ProductCard() {
           <Button variant="outline-dark">Add to cart</Button>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

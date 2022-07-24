@@ -3,7 +3,7 @@ import "./Footer.css";
 
 const footer = () => {
   return (
-    <div className="footer-container grid-col-span-8">
+    <div className="footer-container">
       &copy;2022 Puccio Pucci - All rights reserved.
     </div>
   );

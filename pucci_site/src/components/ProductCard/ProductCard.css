@@ -1,17 +1,17 @@
-.card {
-    margin-bottom: 1rem;
-    z-index: 0;
+.product-card-container {
+  z-index: 0;
+  position: relative;
 }
 
 .empty-heart-icon {
-    z-index: 1;
-    font-size: 35px;
-    color: black;
-    position: relative;
-    top: 10%;
-    left: 40%;
+  z-index: 1;
+  font-size: 35px;
+  color: black;
+  position: absolute;
+  top: 2.5%;
+  right: 5%;
 }
 
 .empty-heart-icon:hover {
-    color: red;
+  color: red;
 }
