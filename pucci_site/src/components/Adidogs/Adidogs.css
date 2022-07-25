@@ -1,16 +1,7 @@
 .adidogs-container {
   position: relative;
 }
-.split-image-diagonal-l-r {
-  position: relative;
-}
-.split-image-diagonal-l {
-  position: absolute;
-  max-width: 100%;
-  height: 100%;
-  /* -webkit-clip-path: polygon(0 0, 0 100px, 100px 80px, 100px 0);
-  clip-path: polygon(0 0, 0 100px, 100px 80px, 100px 0); */
-}
+
 .adidogs-card-container {
   position: relative;
   width: 100%;

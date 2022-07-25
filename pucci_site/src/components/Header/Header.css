@@ -24,6 +24,7 @@
   color: var(--pucci-color-light);
   transform: translateY(-5px);
 }
+
 .nav-link:active {
   color: var(--pucci-color-light);
 }
@@ -47,6 +48,7 @@
   /* background-color: blue; debugging purposes */
   padding: 10px;
   color: var(--pucci-color-light);
+
   border: none;
   font-size: 12px;
   transition: 0.4s cubic-bezier(0.5, -1.5, 0.5, 2.5);

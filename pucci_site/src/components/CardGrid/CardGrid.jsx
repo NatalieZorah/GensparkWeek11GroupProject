@@ -61,7 +61,6 @@ const products = [
     description: "Fancy sungladsses",
     img: PinkNavyTop,
   },
-];
 
 function CardGrid() {
   return (
@@ -72,15 +71,6 @@ function CardGrid() {
         </span>
       ))}
     </div>
-    // <>
-    //   <Row xs={1} md={2} lg={4}>
-    //     {products.map((product) => (
-    //       <Col key={product.id}>
-    //         <ProductCard />
-    //       </Col>
-    //     ))}
-    //   </Row>
-    // </>
   );
 }
 
