@@ -12,7 +12,6 @@ const RegisterModal = props => {
     const modalSize = React.useState('medium');
     const [formValues, setFormValues] = useState({ firstname: "", lastname: "", email: "", phone: "", username: "", password: "", password2: "" });
     const [formErrors, setFormErrors] = useState({ firstname: "", lastname: "", email: "", phone: "", username: "", password: "", password2: "" });
-    const [validForm, setValidForm] = useState(false);
     const [ToSCheckbox, setToSCheckbox] = useState(false);
     const [registrationWait, setRegistrationWait] = useState(false);
 
@@ -25,8 +24,6 @@ const RegisterModal = props => {
         e.preventDefault();
 
         //reset
-        setValidForm(false);
-
         setFormErrors({
             ...formErrors,
             firstname: "",
@@ -38,19 +35,16 @@ const RegisterModal = props => {
             password2: ""
         });
 
-        //Validate form 
-        validate(formValues);
-
         // Testing purposes only
-        console.log("formvalues:", formValues);
-        console.log("formerrors:", formErrors);
-        console.log("validform:", validForm);
+        // console.log("formvalues:", formValues);
+        // console.log("formerrors:", formErrors);
 
-        if (validForm && ToSCheckbox) {
+        if (validate(formValues) && ToSCheckbox) {
             //Validation passed
+            console.log("Validation passed");
             setRegistrationWait(true);
             AuthService.register(formValues.username, formValues.email, formValues.password)
-            then((response) => {
+            .then((response) => {
                 console.log(response);
                 if (response && response.status === 200) {
                     console.log("Registration success");
@@ -63,7 +57,7 @@ const RegisterModal = props => {
             });
         } else {
             //Form validation failed.
-            console.log(formErrors);
+            console.log("Form validation failed.");
         }
     };
 
@@ -76,40 +70,38 @@ const RegisterModal = props => {
         // name
         if (!nameRegex.test(values.firstName)) {
             setFormErrors({ firstname: "Can only contain upper and lowercase letters." });
+            return false;
         }
         if (!nameRegex.test(values.lastName)) {
             setFormErrors({ lastname: "Can only contain upper and lowercase letters." });
+            return false;
         }
         // phone
         if (!phoneRegex.test(values.phone)) {
             setFormErrors({ email: "Phone number must be a valid format." });
+            return false;
         }
         // username
         if (!userRegex.test(values.username)) {
             setFormErrors({ username: "Username must only contain alphanumeric characters, underscores, periods, and dashes." });
+            return false;
         }
         //password - Some commented out for testing purposes. Uncomment for production.
-        // if (values.password < 8) {
-        //     setFormErrors({ password: "Password must be at least 8 characters long." });
-        // }
+        if (values.password < 8) {
+            setFormErrors({ password: "Password must be at least 8 characters long." });
+           return false;
+        }
         // if (!passwordRegex.test(values.password)) {
         //     setFormErrors({ password: "Password must contain at least one number and at least one special character." });
+        //      return false;
         // }
         if (values.password !== values.password2) {
             setFormErrors({ password2: "Passwords do not match." });
+            return false;
         }
 
         // approve valid form if no errors
-        console.log(formErrors);
-        if (
-            formErrors.firstname === "" &&
-            formErrors.lastname === "" &&
-            formErrors.email === "" &&
-            formErrors.phone === "" &&
-            formErrors.username === "" &&
-            formErrors.password === "" &&
-            formErrors.password2 === ""
-        ) { setValidForm(true); }
+        return true;
     };
 
     return (
@@ -146,12 +138,10 @@ const RegisterModal = props => {
 
                                 <div className="field">
                                     <input type="email" className="email" name="email" placeholder="Email" value={formValues.email} onChange={onTextChange} required />
-                                    <p className="errors">{formErrors.email}</p>
                                 </div>
 
                                 <div className="field">
                                     <input type="text" className="phone" name="phone" placeholder="Phone number" value={formValues.phone} onChange={onTextChange} required />
-                                    <p className="errors">{formErrors.phone}</p>
                                 </div>
                             </div>
 

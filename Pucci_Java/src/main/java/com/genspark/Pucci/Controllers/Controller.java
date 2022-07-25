@@ -2,34 +2,14 @@ package com.genspark.Pucci.Controllers;
 
 
 import com.genspark.Pucci.Daos.UserDao;
-import com.genspark.Pucci.Entities.*;
-import com.genspark.Pucci.Payload.request.auth.SignupRequest;
-import com.genspark.Pucci.Payload.response.MessageResponse;
+import com.genspark.Pucci.Entities.Order;
+import com.genspark.Pucci.Entities.Product;
+import com.genspark.Pucci.Entities.User;
 import com.genspark.Pucci.Services.*;
 import com.genspark.Pucci.security.jwt.JwtUtils;
-import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.mail.MessagingException;
-import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.util.HashSet;
 import java.util.List;
-<<<<<<< refs/remotes/awsaylot/main
-<<<<<<< refs/remotes/awsaylot/main
-import java.util.Set;
-<<<<<<< refs/remotes/awsaylot/main
-=======
-import java.util.Set;
->>>>>>> adding cart and redux
-
-=======
->>>>>>> Added Security
-=======
-
->>>>>>> Added Cart Routes and consolidated user repository files into daos
 
 
 @RestController

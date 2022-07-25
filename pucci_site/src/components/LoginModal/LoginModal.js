@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 import Button from 'react-bootstrap/esm/Button';
 import "./LoginModal.css";
@@ -14,11 +14,6 @@ const LoginModal = props => {
   const [loginWait, setLoginWait] = useState(false);
   const [rememberUser, setRememberUser] = useState(false);
 
-  const onTextChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value })
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -30,18 +25,15 @@ const LoginModal = props => {
       localStorage.setItem("username", formValues.username);
     }
 
-    //Validate form 
-    validate(formValues);
-
     // Testing purposes only
     // console.log("formValues", formValues);
     // console.log("rememberUser:", rememberUser);
     // console.log("formErrors:", formErrors)
 
-    if (validForm) {
+    //Validate form
+    if (validate(formValues)) {
       //Validation passed
       console.log("Validation passed.");
-
       setLoginWait(true);
       AuthService.login(formValues.username, formValues.password)
         .then((response) => {
@@ -61,7 +53,7 @@ const LoginModal = props => {
         });
     } else {
       //Form validation failed.
-      console.log(formErrors);
+      console.log("Form validation failed.");
     }
   };
 
@@ -70,13 +62,16 @@ const LoginModal = props => {
 
     if (values.username && !userRegex.test(values.username)) {
       setFormErrors({ username: "Username can only contain alphanumeric characters, dashes, periods, and underscores." });
+      return false;
     }
 
     //Commented out for testing purposes. Uncomment for production.
-    // if (values.password && values.password.length < 8) {
-    //   setFormErrors({ password: "Password must be at least 8 characters long." });
-    // }
+    if (values.password && values.password.length < 8) {
+      setFormErrors({ password: "Password must be at least 8 characters long." });
+      return false;
+    }
 
+    return true;
   };
 
   return (
@@ -106,11 +101,11 @@ const LoginModal = props => {
               <div className="login-text-input-wrapper">
 
                 <div className="usernameField">
-                  <input type="text" className="username" name="username" placeholder="Username" onChange={onTextChange} value={formValues.username} required />
+                  <input type="text" className="username" name="username" placeholder="Username" onChange={e => setFormValues({ ...formValues, username: e.target.value })} value={formValues.username} required />
                 </div>
 
                 <div className="passwordField">
-                  <input type="password" className="password" name="password" placeholder="Password" onChange={onTextChange} value={formValues.password} required />
+                  <input type="password" className="password" name="password" placeholder="Password" onChange={e => setFormValues({ ...formValues, password: e.target.value })} value={formValues.password} required />
                 </div>
 
               </div>
