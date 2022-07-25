@@ -24,37 +24,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState(undefined)
   const [users, setUsers] = useState(undefined);
   const [products, setProducts] = useState(undefined);
-  const [loginError, setLoginError] = useState("");
-  const [registerError, setRegisterError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-
-    if (AuthService.login(details.username, details.password)) {
-      console.log("Logged in successfully");
-      setCurrentUser({
-        username: details.username,
-        email: details.email
-      });
-    } else {
-      setLoginError("Login failed. Please try again.");
-    }
-  }
 
   const Logout = () => {
     AuthService.logout();
     setCurrentUser(undefined);
     setLoginError("");
     console.log("Logout successfully");
-  }
-
-  const RegisterAccount = details => {
-    console.log(details);
-    if (UserService.createUser("ROLE_USER", details.name, details.username, details.password, details.email, details.phone)) {
-      console.log("Registered user successfully");
-    } else {
-      setRegisterError("Registration failed.");
-    }
   }
 
   // const product = {
@@ -103,8 +78,6 @@ function App() {
             modalIsOpen={isOpen}
             handleClose={toggleLoginModal}
             setCurrentUser={setCurrentUser}
-            onSubmit={Login}
-            error={loginError}
           />
         }
 
@@ -112,8 +85,6 @@ function App() {
           <RegisterModal
             modalIsOpen={register}
             handleClose={toggleRegister}
-            onSubmit={RegisterAccount}
-            error={registerError}
           />
         }
 

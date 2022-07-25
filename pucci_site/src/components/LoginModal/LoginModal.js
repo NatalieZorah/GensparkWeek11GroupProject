@@ -66,10 +66,10 @@ const LoginModal = props => {
     }
 
     //Commented out for testing purposes. Uncomment for production.
-    if (values.password && values.password.length < 8) {
-      setFormErrors({ password: "Password must be at least 8 characters long." });
-      return false;
-    }
+    // if (values.password && values.password.length < 8) {
+    //   setFormErrors({ password: "Password must be at least 8 characters long." });
+    //   return false;
+    // }
 
     return true;
   };

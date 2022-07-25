@@ -39,11 +39,13 @@ const RegisterModal = props => {
         // console.log("formvalues:", formValues);
         // console.log("formerrors:", formErrors);
 
+        
         if (validate(formValues) && ToSCheckbox) {
             //Validation passed
             console.log("Validation passed");
             setRegistrationWait(true);
-            AuthService.register(formValues.username, formValues.email, formValues.password)
+            let name = formValues.firstname.trim() + " " + formValues.lastname.trim();
+            AuthService.register(formValues.username, formValues.email, formValues.password, name, formValues.phone)
             .then((response) => {
                 console.log(response);
                 if (response && response.status === 200) {
