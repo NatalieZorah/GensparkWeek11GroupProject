@@ -16,7 +16,7 @@ function ProductCard(props) {
     setShow(true)
   }
   return (
-    <>
+    <div className="product-card-container">
       <IoMdHeartEmpty className="empty-heart-icon" />
       <Toast className="toast" onClose={() => setShow(false)} show={show} delay={2000} autohide>
         <Toast.Body>Added {props.product.title} to cart!</Toast.Body>
@@ -31,7 +31,7 @@ function ProductCard(props) {
           <Button variant="outline-dark" onClick={handleAddToCart}>Add to cart</Button>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

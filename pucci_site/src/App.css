@@ -1,8 +1,32 @@
-.App {
+:root {
+  --pucci-color-dark: #1b1b1b;
+  --pucci-color-light: #e5dfd9;
+}
 
+.App {
+  color: black;
   display: flex;
+
   flex-direction: column;
   overflow-x: hidden;
-
   text-align: center;
+}
+
+.grid-col-span-2 {
+  grid-column: span 2;
+}
+.grid-col-span-3 {
+  grid-column: span 3;
+}
+.grid-col-span-4 {
+  grid-column: span 4;
+}
+.grid-col-span-5 {
+  grid-column: span 5;
+}
+.grid-col-span-6 {
+  grid-column: span 6;
+}
+.grid-col-span-8 {
+  grid-column: span 8;
 }

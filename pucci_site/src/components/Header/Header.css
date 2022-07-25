@@ -1,66 +1,73 @@
 .header-container {
-    font-family: 'Granjon', serif;
-    background-color: #1b1b1bf2;
-    color: #e5dfd9;
-    padding: 15px;
+  font-family: "Granjon", serif;
+  background-color: var(--pucci-color-dark);
+  color: var(--pucci-color-light);
+  padding: 15px;
 }
 
 .nav {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .pucci-logo {
-    font-family: GucciFont, serif;
-    color: white;
+  font-family: GucciFont, serif;
+  color: var(--pucci-color-light);
 }
 
 .nav-link {
-    color: #e5dfd9;
-    font-family: FjallaOne;
+  color: var(--pucci-color-light);
+  font-family: FjallaOne;
 }
 .nav-link:hover {
-    color: white;
+  color: var(--pucci-color-light);
 }
 .nav-link:active {
-    color: white;
+  color: var(--pucci-color-light);
 }
 
 .nav-user-btn-container {
-    font-family: OpenSans-Regular,sans-serif;
-    position: absolute;
-    height:fit-content;
-    width: fit-content;
-    top: 1%;
-    right: 1%;
-    display: flex;
+  font-family: OpenSans-Regular, sans-serif;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  top: 1%;
+  right: 1%;
+  display: flex;
 }
 
-.nav-login-btn, .nav-register-btn, .nav-favorites-btn, .nav-bag-btn , .nav-search-btn {
-    background-color: transparent;
-    /* background-color: blue; debugging purposes */
-    padding: 10px;
-    color: #e5dfd9;
-    color: lightgray;
-    border: none;
-    font-size: 12px;
+.nav-login-btn,
+.nav-register-btn,
+.nav-favorites-btn,
+.nav-bag-btn,
+.nav-search-btn {
+  background-color: transparent;
+  /* background-color: blue; debugging purposes */
+  padding: 10px;
+  color: var(--pucci-color-light);
+  color: lightgray;
+  border: none;
+  font-size: 12px;
 }
 
-.nav-login-btn:hover , .nav-register-btn:hover, .nav-favorites-btn:hover, .nav-bag-btn:hover, .nav-search-btn:hover {
-    color: white;
+.nav-login-btn:hover,
+.nav-register-btn:hover,
+.nav-favorites-btn:hover,
+.nav-bag-btn:hover,
+.nav-search-btn:hover {
+  color: white;
 }
-
 
 .nav-favorites-btn-icon {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .nav-bag-btn-icon {
-    margin-right: 4px;
-    position: relative;
-    bottom: 1px;
+  margin-right: 4px;
+  position: relative;
+  bottom: 1px;
 }
 
 .nav-search-btn-icon {
-    font-size: 20px;
+  font-size: 20px;
 }

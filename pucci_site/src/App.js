@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 import Modal from 'react-modal';
 import LoginModal from './components/LoginModal/LoginModal';
@@ -7,17 +7,18 @@ import RegisterModal from './components/RegisterModal/RegisterModal';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Adidogs from './components/Adidogs/Adidogs';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MailService from './services/mail.service';
 import UserService from './services/user.service';
 import OrderService from './services/order.service';
 import ProductService from './services/product.service';
+import NotFound from './components/NotFound/NotFound';
 import AuthService from './services/auth.service';
 import Bag from './components/Bag/Bag';
 Modal.setAppElement('#root');
 
 function App() {
-
   const [isOpen, setIsOpen] = useState(false);
   const [register, setRegister] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -49,7 +50,7 @@ function App() {
 
   const RegisterAccount = details => {
     console.log(details);
-    if (UserService.createUser("ROLE_USER",details.name, details.username, details.password, details.email, details.phone)) {
+    if (UserService.createUser("ROLE_USER", details.name, details.username, details.password, details.email, details.phone)) {
       console.log("Registered user successfully");
     } else {
       setRegisterError("Registration failed.");
@@ -77,7 +78,7 @@ function App() {
 
   const toggleRegister = () => {
     setRegister(!register);
-  }
+  };
 
   const openRegisterModal = () => {
     setIsOpen(false);
@@ -115,10 +116,14 @@ function App() {
             error={registerError}
           />
         }
-        
+
         <Routes>
           <Route index element={<Home />} />
           <Route path="bag" element={<Bag />} />
+          <Route path="/adidogs" element={<Adidogs />} />
+          <Route path="/page-not-found" element={<NotFound />} />
+          {/* <Route path="/admin" element={<Admin />} />
+          <Route path="/cart" element={<Cart />} /> */}
         </Routes>
       </BrowserRouter>
       <Footer />
