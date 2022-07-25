@@ -18,10 +18,13 @@
 .nav-link {
   color: var(--pucci-color-light);
   font-family: FjallaOne;
+  transition: 0.3s;
 }
 .nav-link:hover {
   color: var(--pucci-color-light);
+  transform: translateY(-5px);
 }
+
 .nav-link:active {
   color: var(--pucci-color-light);
 }
@@ -45,9 +48,10 @@
   /* background-color: blue; debugging purposes */
   padding: 10px;
   color: var(--pucci-color-light);
-  color: lightgray;
+
   border: none;
   font-size: 12px;
+  transition: 0.4s cubic-bezier(0.5, -1.5, 0.5, 2.5);
 }
 
 .nav-login-btn:hover,
@@ -56,6 +60,7 @@
 .nav-bag-btn:hover,
 .nav-search-btn:hover {
   color: white;
+  transform: scale(1.2);
 }
 
 .nav-favorites-btn-icon {

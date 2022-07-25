@@ -16,11 +16,13 @@ const products = [
 const Adidogs = () => {
   return (
     <div className="adidogs-container">
-      {products.map((product) => (
-        <span className="grid-col-span-2">
-          <ProductCard key={product.id}></ProductCard>
-        </span>
-      ))}
+      <div className="adidogs-card-container">
+        {products.map((product) => (
+          <span key={product.id} className="grid-col-span-2">
+            <ProductCard CardImage="https://dummyimage.com/300" />
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

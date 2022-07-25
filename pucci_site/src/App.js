@@ -91,6 +91,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="bag" element={<Bag />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/adidogs" element={<Adidogs />} />
           <Route path="/page-not-found" element={<NotFound />} />
           {/* <Route path="/admin" element={<Admin />} />

@@ -1,6 +1,11 @@
 .product-card-container {
   z-index: 0;
   position: relative;
+  transition: 0.3s;
+}
+
+.product-card-container:hover {
+  transform: translateY(-12px);
 }
 
 .empty-heart-icon {
@@ -14,6 +19,7 @@
 
 .empty-heart-icon:hover {
     color: red;
+    animation: heartbeat 0.8s infinite;
 }
 
 .toast {
@@ -21,4 +27,25 @@
     right: 0px;
     bottom: 0px;
     z-index: 3;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.8);
+  }
+  20% {
+    transform: scale(1.2);
+  }
+  40% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(0.8);
+  }
 }
