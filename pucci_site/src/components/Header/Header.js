@@ -47,10 +47,16 @@ const Navigation = (props) => {
             </div>
             <nav>
               <ul className="nav nav-tabs">
-                <li className="nav-tabs-header">
-                  {/* for the moment all links point to not found so that they arent all highlighted as active, as the pages are added
+                {/* for the moment all links point to not found so that they arent all highlighted as active, as the pages are added
                 they can just be changed to the proper link as noted in the comment above each link */}
 
+                <li className="nav-tabs-header">
+                  {/* /home */}
+                  <NavLink className="nav-link" to="/home">
+                    HOME
+                  </NavLink>
+                </li>
+                <li className="nav-tabs-header">
                   {/* /adidogs */}
                   <NavLink className="nav-link" to="/adidogs">
                     ADIDOGS X PUCCI

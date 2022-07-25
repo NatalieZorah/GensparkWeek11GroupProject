@@ -74,6 +74,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/adidogs" element={<Adidogs />} />
           <Route path="/page-not-found" element={<NotFound />} />
           {/* <Route path="/admin" element={<Admin />} />

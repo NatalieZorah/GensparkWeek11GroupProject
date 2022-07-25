@@ -4,12 +4,16 @@ import Button from "react-bootstrap/Button";
 import { IoMdHeartEmpty } from "react-icons/io";
 import "./ProductCard.css";
 
-function ProductCard() {
+const ProductCard = (props) => {
   return (
     <div className="product-card-container">
       <IoMdHeartEmpty className="empty-heart-icon" />
       <Card>
-        <Card.Img variant="top" src="https://dummyimage.com/300" />
+        <Card.Img
+          className="card-image-container"
+          variant="top"
+          src={props.CardImage}
+        />
         <Card.Body>
           <Card.Title>Product</Card.Title>
           <Card.Text>
@@ -21,6 +25,6 @@ function ProductCard() {
       </Card>
     </div>
   );
-}
+};
 
 export default ProductCard;

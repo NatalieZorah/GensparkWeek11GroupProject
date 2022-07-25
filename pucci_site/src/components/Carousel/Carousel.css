@@ -1,17 +1,25 @@
 .carousel-item {
-    height: 50em;
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 50em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .carousel-item h3 {
-    color: white;
-    font-size: 64px;
-    font-family: Roboto-Regular, "Helvetica Neue";
-    text-align: center;
-    /* position: relative;
+  color: var(--pucci-color-light);
+  font-size: 64px;
+  font-family: Roboto-Regular, "Helvetica Neue";
+  text-align: center;
+  /* position: relative;
     bottom: 50% !important; */
-    position: absolute;
-    bottom: 900%;
-    left: 25%;
+  position: absolute;
+  bottom: 837.5%;
+  left: 12.5%;
+}
+
+.carousel-control-next-icon {
+  color: var(--pucci-color-light);
+}
+
+.carousel-control-prev-icon {
+  color: var(--pucci-color-light);
 }
