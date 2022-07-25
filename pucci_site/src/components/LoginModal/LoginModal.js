@@ -1,4 +1,4 @@
-import React, { useState, useEffect, formValues, isSubmit } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import Button from 'react-bootstrap/esm/Button';
 import "./LoginModal.css";
@@ -9,11 +9,12 @@ const LoginModal = props => {
 
   const modalPosition = React.useState('center');
   const modalSize = React.useState('small');
-  const [formValues, setFormValues] = useState({ username: "", password: "" });
+  const [formValues, setFormValues] = useState({ username: localStorage.getItem("username") || "", password: "" });
   const [formErrors, setFormErrors] = useState({ username: "", password: "" });
   const [loginWait, setLoginWait] = useState(false);
+  const [rememberUser, setRememberUser] = useState(false);
 
-  const onInputChange = (e) => {
+  const onTextChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value })
   };
@@ -24,10 +25,23 @@ const LoginModal = props => {
     //Reset any axisting errors
     setFormErrors({ ...formErrors, username: "", password: "" });
 
+    //Save username in local storage if user checks "Remember me"
+    if (rememberUser) {
+      localStorage.setItem("username", formValues.username);
+    }
+
     //Validate form 
     validate(formValues);
-    if (formErrors.username === "" && formErrors.password === "") {
+
+    // Testing purposes only
+    // console.log("formValues", formValues);
+    // console.log("rememberUser:", rememberUser);
+    // console.log("formErrors:", formErrors)
+
+    if (validForm) {
       //Validation passed
+      console.log("Validation passed.");
+
       setLoginWait(true);
       AuthService.login(formValues.username, formValues.password)
         .then((response) => {
@@ -62,6 +76,7 @@ const LoginModal = props => {
     // if (values.password && values.password.length < 8) {
     //   setFormErrors({ password: "Password must be at least 8 characters long." });
     // }
+
   };
 
   return (
@@ -91,17 +106,17 @@ const LoginModal = props => {
               <div className="login-text-input-wrapper">
 
                 <div className="usernameField">
-                  <input type="text" className="username" name="username" placeholder="Username" onChange={onInputChange} value={formValues.username} required />
+                  <input type="text" className="username" name="username" placeholder="Username" onChange={onTextChange} value={formValues.username} required />
                 </div>
 
                 <div className="passwordField">
-                  <input type="password" className="password" name="password" placeholder="Password" onChange={onInputChange} value={formValues.password} required />
+                  <input type="password" className="password" name="password" placeholder="Password" onChange={onTextChange} value={formValues.password} required />
                 </div>
 
               </div>
 
               <div className="login-checkbox-input-wrapper">
-                <input type="checkbox" /><span>Remember me</span>
+                <input type="checkbox" onChange={() => setRememberUser(!rememberUser)} value={rememberUser.value} name="rememberUser" /><span>Remember me</span>
               </div>
 
               <div className="login-btn-wrapper">

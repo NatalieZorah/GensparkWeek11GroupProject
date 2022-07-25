@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import Modal from 'react-modal';
+import AuthService from '../../services/auth.service';
+import PulseLoader from "react-spinners/PulseLoader";
 import './RegisterModal.css';
 
 
@@ -8,101 +10,106 @@ const RegisterModal = props => {
 
     const modalPosition = React.useState('center');
     const modalSize = React.useState('medium');
-    const initValues = { username: "", password: "", password2: "", email: "", phone: "", firstName: "", lastName: "", tosCheckbox: false };
-    const initPlaceholders = {
-        firstName: "First name",
-        lastName: "Last name",
-        email: "Email",
-        phone: "Phone number",
-        username: "Username",
-        password: "Password",
-        password2: "Re-enter your password"
-    };
-    const [formValues, setFormValues] = useState(initValues);
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [formPlaceholders, setFormPlaceholders] = useState(initPlaceholders);
+    const [formValues, setFormValues] = useState({ firstname: "", lastname: "", email: "", phone: "", username: "", password: "", password2: "" });
+    const [formErrors, setFormErrors] = useState({ firstname: "", lastname: "", email: "", phone: "", username: "", password: "", password2: "" });
+    const [validForm, setValidForm] = useState(false);
+    const [ToSCheckbox, setToSCheckbox] = useState(false);
+    const [registrationWait, setRegistrationWait] = useState(false);
 
-    const handleChange = (e) => {
+    const onTextChange = (e) => {
         const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value })
+        setFormValues({ ...formValues, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        setFormErrors(validate(formValues));
-        setFormPlaceholders(validate(formValues));
-        setIsSubmit(true);
-    };
 
-    useEffect(() => {
-        console.log(formErrors);
-        if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(formValues);
+        //reset
+        setValidForm(false);
+
+        setFormErrors({
+            ...formErrors,
+            firstname: "",
+            lastname: "",
+            email: "",
+            phone: "",
+            username: "",
+            password: "",
+            password2: ""
+        });
+
+        //Validate form 
+        validate(formValues);
+
+        // Testing purposes only
+        console.log("formvalues:", formValues);
+        console.log("formerrors:", formErrors);
+        console.log("validform:", validForm);
+
+        if (validForm && ToSCheckbox) {
+            //Validation passed
+            setRegistrationWait(true);
+            AuthService.register(formValues.username, formValues.email, formValues.password)
+            then((response) => {
+                console.log(response);
+                if (response && response.status === 200) {
+                    console.log("Registration success");
+                    setLoginWait(false);
+                    props.handleClose();
+                } else {
+                    //Registration failed
+                    setRegistrationWait(false);
+                }
+            });
+        } else {
+            //Form validation failed.
+            console.log(formErrors);
         }
-    }, [formErrors]);
+    };
 
     const validate = (values) => {
-        const errors = {};
         const nameRegex = /^[a-zA-Z]+$/
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
         const userRegex = /^[a-zA-Z0-9_.-]+$/;
         const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
-        // name fields - First Name
-        if (!values.firstName) {
-            errors.firstName = "First name is required";
-        }
+        // name
         if (!nameRegex.test(values.firstName)) {
-            errors.firstName = "Can only contain upper and lowercase letters.";
-        }
-        // name fields - Last Name
-        if (!values.lastName) {
-            errors.lastName = "Last name is required";
+            setFormErrors({ firstname: "Can only contain upper and lowercase letters." });
         }
         if (!nameRegex.test(values.lastName)) {
-            errors.lastName = "Can only contain upper and lowercase letters.";
-        }
-        // email
-        if (!values.email) {
-            errors.email = "Email is required";
-        }
-        if (!emailRegex.test(values.email)) {
-            errors.email = "Email must be a valid email address.";
+            setFormErrors({ lastname: "Can only contain upper and lowercase letters." });
         }
         // phone
-        if (!values.phone) {
-            errors.phone = "Phone is required";
-        }
         if (!phoneRegex.test(values.phone)) {
-            errors.phone = "Phone number must be a valid format.";
+            setFormErrors({ email: "Phone number must be a valid format." });
         }
         // username
-        if (!values.username) {
-            errors.username = "Username is required";
-        }
         if (!userRegex.test(values.username)) {
-            errors.username = "Username must only contain Uppercase, Lowercase, underscores, periods, and dashes.";
+            setFormErrors({ username: "Username must only contain alphanumeric characters, underscores, periods, and dashes." });
         }
-        //password
-        if (!values.password) {
-            errors.password = "Password is required";
-        }
-        if (values.password < 8) {
-            errors.password = "Password must be at least 8 characters long.";
-        }
-        if (!passwordRegex.test(values.password)) {
-            errors.password = "Password must contain at least one number, and at least one special character.";
-        }
+        //password - Some commented out for testing purposes. Uncomment for production.
+        // if (values.password < 8) {
+        //     setFormErrors({ password: "Password must be at least 8 characters long." });
+        // }
+        // if (!passwordRegex.test(values.password)) {
+        //     setFormErrors({ password: "Password must contain at least one number and at least one special character." });
+        // }
         if (values.password !== values.password2) {
-            errors.password2 = "Passwords do not match.";
+            setFormErrors({ password2: "Passwords do not match." });
         }
-        // terms of service checkbox
-        if (!values.tosCheckbox) {
-            errors.tosCheckbox = "You must accept the terms of service to continue.";
-        }
-        return errors;
+
+        // approve valid form if no errors
+        console.log(formErrors);
+        if (
+            formErrors.firstname === "" &&
+            formErrors.lastname === "" &&
+            formErrors.email === "" &&
+            formErrors.phone === "" &&
+            formErrors.username === "" &&
+            formErrors.password === "" &&
+            formErrors.password2 === ""
+        ) { setValidForm(true); }
     };
 
     return (
@@ -116,59 +123,64 @@ const RegisterModal = props => {
                         <h2 className="register-header">Register an account</h2>
                     </div>
 
-                    <div className="register-text-input-wrapper">
+                    <div className="error-container">
+                        {(formErrors.username !== "") ? (<div className="error-message">{formErrors.firstname}</div>) : ""}
+                        {(formErrors.password !== "") ? (<div className="error-message">{formErrors.lastname}</div>) : ""}
+                        {(formErrors.username !== "") ? (<div className="error-message">{formErrors.email}</div>) : ""}
+                        {(formErrors.phone !== "") ? (<div className="error-message">{formErrors.phone}</div>) : ""}
+                        {(formErrors.username !== "") ? (<div className="error-message">{formErrors.username}</div>) : ""}
+                        {(formErrors.password !== "") ? (<div className="error-message">{formErrors.password}</div>) : ""}
+                        {(formErrors.password2 !== "") ? (<div className="error-message">{formErrors.password2}</div>) : ""}
+                    </div>
 
-                        <div className='personal-info-container'>
-                            <p className="personal-info-header">Personal information</p>
-                            <div className="field name-field">
-                                <input type="text" className="first-name-input" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
-                                <p className="errors">{formErrors.firstName}</p>
-                                <input type="text" className="last-name-input" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
-                                <p className="errors">{formErrors.lastName}</p>
+                    <form onSubmit={onSubmit} className="register-text-input-wrapper">
+
+                        <div className="register-text-input-wrapper">
+
+                            <div className='personal-info-container'>
+                                <p className="personal-info-header">Personal information</p>
+                                <div className="field name-field">
+                                    <input type="text" className="first-name-input" name="firstname" placeholder="First name" value={formValues.firstName} onChange={onTextChange} required />
+                                    <input type="text" className="last-name-input" name="lastname" placeholder="Last name" value={formValues.lastName} onChange={onTextChange} required />
+                                </div>
+
+                                <div className="field">
+                                    <input type="email" className="email" name="email" placeholder="Email" value={formValues.email} onChange={onTextChange} required />
+                                    <p className="errors">{formErrors.email}</p>
+                                </div>
+
+                                <div className="field">
+                                    <input type="text" className="phone" name="phone" placeholder="Phone number" value={formValues.phone} onChange={onTextChange} required />
+                                    <p className="errors">{formErrors.phone}</p>
+                                </div>
                             </div>
 
-                            <div className="field">
-                                <input type="text" className="email" placeholder={formPlaceholders.email} defaultValue={formValues.email} onChange={handleChange} required />
-                                <p className="errors">{formErrors.email}</p>
-                            </div>
+                            <div className="login-info-container">
+                                <p className="login-info-header">Sign in information</p>
 
-                            <div className="field">
-                                <input type="text" className="phone" placeholder={formPlaceholders.phone} defaultValue={formValues.phone} onChange={handleChange} required />
-                                <p className="errors">{formErrors.phone}</p>
+                                <div className="field">
+                                    <input type="text" className="username" name="username" placeholder="Username" value={formValues.username} onChange={onTextChange} required />
+                                </div>
+
+                                <div className="field">
+                                    <input type="password" className="password" name="password" placeholder="Password" value={formValues.password} onChange={onTextChange} required />
+                                </div>
+
+                                <div className="field">
+                                    <input type="password" className="password" name="password2" placeholder="Re-enter password" value={formValues.password2} onChange={onTextChange} required />
+                                </div>
                             </div>
                         </div>
 
-                        <div className="login-info-container">
-                            <p className="login-info-header">Sign in information</p>
-
-                            <div className="field">
-                                <input type="text" className="username" placeholder={formPlaceholders.username} defaultValue={formValues.username} onChange={handleChange} required />
-                                <p className="errors">{formErrors.username}</p>
-                            </div>
-
-                            <div className="field">
-                                <input type="text" className="password" placeholder={formPlaceholders.password} defaultValue={formValues.password} onChange={handleChange} required />
-                                <p className="errors">{formErrors.password}</p>
-                            </div>
-
-                            <div className="field">
-                                <input type="text" className="password" placeholder={formPlaceholders.password2} defaultValue={formValues.password2} onChange={handleChange} required />
-                                <p className="errors">{formErrors.password2}</p>
-                            </div>
-
+                        <div className="register-checkbox-input-wrapper">
+                            <input type="checkbox" className="ToSCheckbox" name="TosCheckbox" onChange={() => setToSCheckbox(!ToSCheckbox)} value={ToSCheckbox.value} required />
+                            <span>I accept <a href="#"> Terms of Use </a></span>
                         </div>
-                    </div>
 
-                    <div className="register-checkbox-input-wrapper">
-                        <input type="checkbox" className="tosCheckbox" onChange={handleChange} required />
-                        <span>I accept <a href="#"> Terms of Use </a></span>
-                        {/* Instead of an error here, disable the submit button. */}
-                        <p className="errors"> {formErrors.tosCheckbox}</p>
-                    </div>
-
-                    <div className="register-btn-wrapper">
-                        <Button className="register-btn" onClick={handleSubmit}>Register</Button>
-                    </div>
+                        <div className="register-btn-wrapper">
+                            <Button className="register-btn" type="submit" disabled={!ToSCheckbox}>{(registrationWait) ? (<span>Registering<PulseLoader color="#e5dfd9" size="4" /></span>) : (<span>Register</span>)}</Button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </Modal>
