@@ -79,7 +79,7 @@ const LoginModal = props => {
       <Modal className="login-modal"
         size={modalSize}
         position={modalPosition}
-        isOpen={props.modalIsOpen}
+        isOpen={props.isOpen}
         onRequestClose={props.handleClose}
       >
         <div className="login-box">

@@ -1,0 +1,28 @@
+.admin-box {
+    width: 40%;
+    height: 75%;
+    background-color: white;
+    color: black;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 0 0 75px var(--pucci-color-dark);
+    font-family: OpenSans-Regular, sans-serif;
+  }
+  
+  .admin-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  
+  .admin-header-container {
+    color: black;
+    font-family: OpenSans-Regular, sans-serif;
+    text-align: center;
+  }

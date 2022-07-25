@@ -107,7 +107,7 @@ const RegisterModal = props => {
     };
 
     return (
-        <Modal className="reg-modal" position={modalPosition} size={modalSize} isOpen={props.modalIsOpen} onRequestClose={props.handleClose}>
+        <Modal className="reg-modal" position={modalPosition} size={modalSize} isOpen={props.isOpen} onRequestClose={props.handleClose}>
             <div className="reg-box">
                 <div className='reg-box-content'>
 

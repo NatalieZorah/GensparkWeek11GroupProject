@@ -16,11 +16,13 @@ import ProductService from "./services/product.service";
 import NotFound from "./components/NotFound/NotFound";
 import AuthService from "./services/auth.service";
 import Bag from "./components/Bag/Bag";
+import AdminModal from "./components/AdminModal/AdminModal";
 Modal.setAppElement("#root");
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [register, setRegister] = useState(false);
+  const [LoginView, setLoginView] = useState(false);
+  const [RegisterView, setRegisterView] = useState(false);
+  const [AdminView, setAdminView] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [users, setUsers] = useState(undefined);
   const [products, setProducts] = useState(undefined);
@@ -29,7 +31,7 @@ function App() {
     AuthService.logout();
     setCurrentUser(undefined);
     setLoginError("");
-    console.log("Logout successfully");
+    console.log("Logout successful.");
   };
 
   // const product = {
@@ -47,39 +49,53 @@ function App() {
   // .thenProductService.deleteProductById(3)
 
   const toggleLoginModal = () => {
-    setIsOpen(!isOpen);
+    //make sure all other modals are closed
+    setAdminView(false);
+    setRegisterView(false);
+
+    setLoginView(!LoginView);
+
   };
 
-  const toggleRegister = () => {
-    setRegister(!register);
+  const toggleRegisterModal = () => {
+    //make sure all other modals are closed
+    setAdminView(false);
+    setLoginView(false);
+
+    setRegisterView(!RegisterView);
   };
 
-  const openRegisterModal = () => {
-    setIsOpen(false);
-    setRegister(true);
+  const toggleAdminModal = () => {
+    //make sure all other modals are closed
+    setLoginView(false);
+    setRegisterView(false);
+
+    setAdminView(!AdminView);
   };
+
+
 
   return (
     <div className="App">
       <BrowserRouter>
         <Header
           onLoginClick={toggleLoginModal}
-          onRegisterClick={toggleRegister}
+          onRegisterClick={toggleRegisterModal}
           onLogoutClick={Logout}
+          onAdminClick={toggleAdminModal}
           currentUser={currentUser}
         />
 
-        {isOpen && (
-          <LoginModal
-            onRegisterClick={openRegisterModal}
-            modalIsOpen={isOpen}
-            handleClose={toggleLoginModal}
-            setCurrentUser={setCurrentUser}
-          />
+        {LoginView && (
+          <LoginModal isOpen={LoginView} handleClose={toggleLoginModal} setCurrentUser={setCurrentUser} />
         )}
 
-        {register && (
-          <RegisterModal modalIsOpen={register} handleClose={toggleRegister} />
+        {RegisterView && (
+          <RegisterModal isOpen={RegisterView} handleClose={toggleRegisterModal} />
+        )}
+
+        {AdminView && (
+          <AdminModal isOpen={AdminView} handleClose={toggleAdminModal} />
         )}
 
         <Routes>
