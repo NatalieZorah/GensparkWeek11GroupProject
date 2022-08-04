@@ -15,6 +15,8 @@
   }
   
   .admin-content {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -25,4 +27,43 @@
     color: black;
     font-family: OpenSans-Regular, sans-serif;
     text-align: center;
+  }
+
+  .admin-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .admin-select-btn {
+    width: 35%;
+    background-color: black;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  .admin-select-btn:hover {
+    background-color: var(--pucci-color-dark);
+    border-color: var(--pucci-color-dark);
+    color: var(--pucci-color-light);
+  }
+
+  .back-btn {
+    width: 35%;
+    background-color: black;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  .back-btn:hover {
+    background-color: var(--pucci-color-dark);
+    border-color: var(--pucci-color-dark);
+    color: var(--pucci-color-light);
   }
