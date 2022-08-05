@@ -12,6 +12,14 @@ public class Cart {
     private int product_id;
     private int quantity;
 
+    public int getCart_id() {
+        return cart_id;
+    }
+
+    public void setCart_id(int cart_id) {
+        this.cart_id = cart_id;
+    }
+
     public Cart() {
     }
 
