@@ -8,14 +8,11 @@ export const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		getCart: (state, action) => {
-
-		},
 		addToCart: (state, action) => {
 			state.cart.push(action.payload) 
 		},
 		removeFromCart: (state, action) => {
-
+			
 		},
 		changeQuantity: (state, action) => {
 			state.user = action.payload
