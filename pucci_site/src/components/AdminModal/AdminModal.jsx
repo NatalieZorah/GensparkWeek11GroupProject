@@ -5,6 +5,7 @@ import ProductService from '../../services/product.service';
 import UserService from '../../services/user.service';
 import OrderService from '../../services/order.service';
 import { BiSearch } from "react-icons/bi";
+import Form from 'react-bootstrap/Form';
 import "./AdminModal.css";
 
 const AdminModal = (props) => {
@@ -20,11 +21,19 @@ const AdminModal = (props) => {
     const [showCreateUser, setShowCreateUser] = useState(false);
     const [showCreateProduct, setShowCreateProduct] = useState(false);
     const [showCreateOrder, setShowCreateOrder] = useState(false);
+    const [createUserValues, setCreateUserValues] = useState({ sign_in_type: "", name: "", username: "", password: "", email: "", phone: "" });
+    const [createProductValues, setCreateProductValues] = useState({ name: "", price: "" });
+    const [createOrderList, setCreateOrderList] = useState([]);
 
     const resetView = () => {
         setShowManageOrders(false);
         setShowManageProducts(false);
         setShowManageUsers(false);
+
+        setShowCreateUser(false);
+        setShowCreateProduct(false);
+        setShowCreateOrder(false);
+
         setShowBackButton(false);
     }
 
@@ -53,6 +62,11 @@ const AdminModal = (props) => {
                 // TODO Display an error message
             }
         });
+    }
+
+    const createOrder = () => {
+
+
     }
 
     const deleteOrder = () => {
@@ -207,7 +221,16 @@ const AdminModal = (props) => {
                                     </div>
                                 </form>
                                 <Button className="manage-orders-btn" onClick={() => getAllOrders()}>View all orders</Button>
-                                <Button className="manage-orders-btn">Create a new order</Button>
+
+                                <form onSubmit={createOrder} className="order-create-wrapper create-wrapper">
+                                    <div className="order-create-input wrapper admin-create-input-wrapper">
+                                        {/* TODO Order creation is a bit more complex than other create methods. Needs dropdown or chip select.*/}
+                                    </div>
+                                    <div className="create-order-btn-wrapper">
+                                        <Button className="manage-orders-btn" type="submit">Create a new order</Button>
+                                    </div>
+                                </form>
+
                                 <Button className="manage-orders-btn">Update an existing order</Button>
                                 <Button className="manage-orders-btn" onClick={() => deleteOrder()}>Delete an existing order</Button>
                             </div>
@@ -245,7 +268,29 @@ const AdminModal = (props) => {
                                     </div>
                                 </form>
                                 <Button className="manage-users-btn" onClick={() => getAllUsers()}>View all users</Button>
-                                <Button className="manage-users-btn">Create a new user</Button>
+
+
+                                <form onSubmit={createUser} className="user-create-wrapper create-wrapper">
+                                    <Form.Select>
+                                        <option>Admin</option>
+                                        <option>User</option>
+                                    </Form.Select>
+
+                                    <div className="field name-field">
+                                        <input type="text" className="first-name-input" name="firstname" placeholder="First name" onChange={e => setCreateUserValues(e.target.value)} value={userIDValue} required  />
+                                        <input type="text" className="last-name-input" name="lastname" placeholder="Last name" value={formValues.lastName} onChange={onTextChange} required />
+                                    </div>
+
+                                    <div className="field">
+                                        <input type="email" className="email" name="email" placeholder="Email" value={formValues.email} onChange={onTextChange} required />
+                                    </div>
+
+                                    <div className="field">
+                                        <input type="text" className="phone" name="phone" placeholder="Phone number" value={formValues.phone} onChange={onTextChange} required />
+                                    </div>
+                                    <Button className="manage-users-btn">Create a new user</Button>
+
+                                </form>
                                 <Button className="manage-users-btn">Update an existing user</Button>
                                 <Button className="manage-users-btn" onClick={() => deleteUser()}>Delete an existing user</Button>
                             </div>

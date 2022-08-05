@@ -29,7 +29,7 @@ const Navigation = props => {
             <div className="nav-user-btn-container">
 
               {/* If a user is logged in and is type admin*/}
-              {/* {props.currentUser && props.currentUser.sign_in_type === "admin" ? (<button className="nav-login-btn">Admin Settings</button>): ""} */}
+              {/* {props.currentUser && props.currentUser.roles[1].name === "ROLE_ADMIN" ? (<button className="nav-login-btn">Admin Settings</button>): ""} */}
               <button className="nav-login-btn" onClick={props.onAdminClick}>Admin Settings</button>
 
               {/* If a user is logged in */}
