@@ -24,14 +24,15 @@ function App() {
   const [LoginView, setLoginView] = useState(false);
   const [RegisterView, setRegisterView] = useState(false);
   const [AdminView, setAdminView] = useState(false);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem('user'));
   const [users, setUsers] = useState(undefined);
   const [products, setProducts] = useState(undefined);
 
-  const Logout = () => {
+  const logout = () => {
     AuthService.logout();
-    setCurrentUser(undefined);
+    setCurrentUser('undefined');
     setLoginError("");
+    localStorage.removeItem('user');
     console.log("Logout successful.");
   };
 
@@ -82,7 +83,7 @@ function App() {
         <Header
           onLoginClick={toggleLoginModal}
           onRegisterClick={toggleRegisterModal}
-          onLogoutClick={Logout}
+          onLogoutClick={logout}
           onAdminClick={toggleAdminModal}
           currentUser={currentUser}
         />

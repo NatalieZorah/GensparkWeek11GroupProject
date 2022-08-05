@@ -40,10 +40,10 @@ const LoginModal = props => {
           console.log(response);
           if (response && response.status === 200) {
             console.log("Sign in success");
-            props.setCurrentUser({
-              username: formValues.username,
-              password: formValues.password
-            });
+            // props.setCurrentUser({
+            //   username: formValues.username,
+            //   password: formValues.password
+            // });
             setLoginWait(false);
             props.handleClose();
           } else {
