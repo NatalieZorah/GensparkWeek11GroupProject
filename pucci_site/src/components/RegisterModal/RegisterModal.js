@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/esm/Button';
 import Modal from 'react-modal';
 import AuthService from '../../services/auth.service';
 import PulseLoader from "react-spinners/PulseLoader";
+import Alert from 'react-bootstrap/Alert';
 import './RegisterModal.css';
 
 
@@ -14,6 +15,7 @@ const RegisterModal = props => {
     const [formErrors, setFormErrors] = useState({ firstname: "", lastname: "", email: "", phone: "", username: "", password: "", password2: "" });
     const [ToSCheckbox, setToSCheckbox] = useState(false);
     const [registrationWait, setRegistrationWait] = useState(false);
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
     const onTextChange = (e) => {
         const { name, value } = e.target;
@@ -39,24 +41,25 @@ const RegisterModal = props => {
         // console.log("formvalues:", formValues);
         // console.log("formerrors:", formErrors);
 
-        
+
         if (validate(formValues) && ToSCheckbox) {
             //Validation passed
             console.log("Validation passed");
             setRegistrationWait(true);
             let name = formValues.firstname.trim() + " " + formValues.lastname.trim();
             AuthService.register(formValues.username, formValues.email, formValues.password, name, formValues.phone)
-            .then((response) => {
-                console.log(response);
-                if (response && response.status === 200) {
-                    console.log("Registration success");
-                    setLoginWait(false);
-                    props.handleClose();
-                } else {
-                    //Registration failed
-                    setRegistrationWait(false);
-                }
-            });
+                .then((response) => {
+                    console.log(response);
+                    if (response && response.status === 200) {
+                        console.log("Registration success");
+                        setRegistrationSuccess(true);
+                        setLoginWait(false);
+                        props.handleClose();
+                    } else {
+                        //Registration failed
+                        setRegistrationWait(false);
+                    }
+                });
         } else {
             //Form validation failed.
             console.log("Form validation failed.");
@@ -91,7 +94,7 @@ const RegisterModal = props => {
         //password - Some commented out for testing purposes. Uncomment for production.
         if (values.password < 8) {
             setFormErrors({ password: "Password must be at least 8 characters long." });
-           return false;
+            return false;
         }
         // if (!passwordRegex.test(values.password)) {
         //     setFormErrors({ password: "Password must contain at least one number and at least one special character." });
@@ -107,7 +110,7 @@ const RegisterModal = props => {
     };
 
     return (
-        <Modal className="reg-modal" position={modalPosition} size={modalSize} isOpen={props.modalIsOpen} onRequestClose={props.handleClose}>
+        <Modal className="reg-modal" position={modalPosition} size={modalSize} isOpen={props.isOpen} onRequestClose={props.handleClose}>
             <div className="reg-box">
                 <div className='reg-box-content'>
 
@@ -116,6 +119,12 @@ const RegisterModal = props => {
                     <div className="register-header-container">
                         <h2 className="register-header">Register an account</h2>
                     </div>
+
+                    {(registrationSuccess) ?
+                        (<div className="success-alert-container">
+                            <Alert variant='success'>Registration Success!</Alert>
+                        </div>)
+                        : ""}
 
                     <div className="error-container">
                         {(formErrors.username !== "") ? (<div className="error-message">{formErrors.firstname}</div>) : ""}

@@ -27,6 +27,12 @@ const Navigation = (props) => {
           <div className="col-xs-12 col-sm-12 col-md-12">
             <h1 className="title pucci-logo">P U C C I </h1>
             <div className="nav-user-btn-container">
+
+              {/* If a user is logged in and is type admin*/}
+              {/* {props.currentUser && props.currentUser.roles[1].name === "ROLE_ADMIN" ? (<button className="nav-login-btn">Admin Settings</button>): ""} */}
+              <button className="nav-login-btn" onClick={props.onAdminClick}>Admin Settings</button>
+
+              {/* If a user is logged in */}
               {props.currentUser ? (
                 <button className="nav-login-btn" onClick={props.Logout}>
                   Logout
@@ -159,6 +165,7 @@ const Header = (props) => {
       <Navigation
         onLoginClick={props.onLoginClick}
         onRegisterClick={props.onRegisterClick}
+        onAdminClick={props.onAdminClick}
         currentUser={props.currentUser}
         logout={logout}
         onBagClick={props.onBagClick}

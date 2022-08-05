@@ -1,0 +1,122 @@
+.admin-box {
+    width: 40%;
+    height: 75%;
+    background-color: white;
+    color: black;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 0 0 75px var(--pucci-color-dark);
+    font-family: OpenSans-Regular, sans-serif;
+  }
+  
+  .admin-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  
+  .admin-header-container {
+    color: black;
+    font-family: OpenSans-Regular, sans-serif;
+    text-align: center;
+  }
+
+  .admin-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .admin-select-btn {
+    width: 35%;
+    background-color: black;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  .admin-select-btn:hover {
+    background-color: var(--pucci-color-dark);
+    border-color: var(--pucci-color-dark);
+    color: var(--pucci-color-light);
+  }
+
+  .back-btn {
+    width: 35%;
+    background-color: black;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  .back-btn:hover {
+    background-color: var(--pucci-color-dark);
+    border-color: var(--pucci-color-dark);
+    color: var(--pucci-color-light);
+  }
+
+  .manage-orders-content-container, .manage-products-content-container, .manage-users-content-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .manage-orders-btn , .manage-products-btn, .manage-users-btn {
+    width: 35%;
+    background-color: black;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  .manage-orders-btn:hover , .manage-products-btn:hover, .manage-users-btn:hover {
+    background-color: var(--pucci-color-dark);
+    border-color: var(--pucci-color-dark);
+    color: var(--pucci-color-light);
+  }
+
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .admin-search-input-wrapper {
+    width: 30%;
+    height: 100%;
+  }
+
+  .admin-search-input {
+    width: 100%;
+    text-align: center;
+    height: 40px;
+  }
+
+  .admin-search-btn {
+    background-color: black;
+    color: white;
+    border-color: transparent;
+  }
+
+  .admin-search-btn:hover {
+    background-color: var(--pucci-color-dark);
+    border-color: var(--pucci-color-dark);
+    color: var(--pucci-color-light);
+  }
