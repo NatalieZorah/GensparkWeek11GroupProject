@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { clearCart, removeFromCart } from "../../slices/cartSlice";
 import CarouselFade from "../Carousel/Carousel";
 import "./Bag.css";
@@ -10,7 +11,7 @@ export default function Bag(props) {
   var subtotal = 0;
 
 	const dispatch = useDispatch()
-
+  const navigate = useNavigate()
 
   const removeProduct = (e) => {
 		e.preventDefault()
@@ -23,6 +24,8 @@ export default function Bag(props) {
     e.preventDefault()
     dispatch(clearCart())
   }
+
+
 
   const displayCart = cart.map((product, index) => {
     subtotal += parseInt(product.price, 10);
@@ -45,7 +48,7 @@ export default function Bag(props) {
         </div>
         <div className="bag-cart grid-col-span-12">{displayCart}</div>
         <div className="bag-subtotal">Subtotal ${subtotal}</div>
-        <button className="btn btn-success">Checkout</button>
+        <button className="btn btn-success" onClick={() => navigate("/checkout")}>Checkout</button>
       </div>
     </>
   );

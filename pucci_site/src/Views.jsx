@@ -3,6 +3,7 @@ import Home from "./components/Home/Home";
 import NotFound from "./components/NotFound/NotFound";
 import Adidogs from "./components/Adidogs/Adidogs";
 import Bag from "./components/Bag/Bag";
+import Checkout from "./components/Checkout/Checkout";
 
 const Views = () => {
   return (
@@ -12,6 +13,7 @@ const Views = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/bag" element={<Bag />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/adidogs" element={<Adidogs />} />
         <Route path="/page-not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} component={<NotFound />} />
