@@ -17,6 +17,9 @@ const AdminModal = (props) => {
     const [productIDValue, setProductIDValue] = useState("");
     const [orderIDValue, setOrderIDValue] = useState("");
     const [userIDValue, setUserIDValue] = useState("");
+    const [showCreateUser, setShowCreateUser] = useState(false);
+    const [showCreateProduct, setShowCreateProduct] = useState(false);
+    const [showCreateOrder, setShowCreateOrder] = useState(false);
 
     const resetView = () => {
         setShowManageOrders(false);
@@ -25,26 +28,62 @@ const AdminModal = (props) => {
         setShowBackButton(false);
     }
 
-    const searchUser = (e) => {
-        e.preventDefault();
-        // TODO Add some validation here to make sure it's a valid user id
-        // Call user service to make an api call
-        UserService.getUserById(userIDValue).then((response) => {
+    const getAllOrders = () => {
+        OrderService.getAllOrders().then((response) => {
             console.log(response);
             if (response && response.status === 200) {
-                console.log("User search successful.");
+                console.log("Get all orders successful.");
                 // TODO Display user information
             } else {
-                //User not found.
+                //Orders not found
                 // TODO Display an error message
             }
         });
     }
 
-    const searchProduct = (e) => {
-        e.preventDefault();
+    const searchOrder = () => {
+        // TODO Add some validation here to make sure it's a valid order id
+        OrderService.getOrderById(orderIDValue).then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("Order search successful.");
+                // TODO Display order information
+            } else {
+                //Order not found.
+                // TODO Display an error message
+            }
+        });
+    }
+
+    const deleteOrder = () => {
+        // TODO Add some validation here to make sure it's a valid order id
+        OrderService.deleteOrderById(orderIDValue).then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("Order deletion successful.");
+                // TODO Display deleted order id
+            } else {
+                //Order not found.
+                // TODO Display an error message
+            }
+        });
+    }
+
+    const getAllProducts = () => {
+        ProductService.getAllProducts().then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("Get all products successful.");
+                // TODO Display product information
+            } else {
+                //Products not found
+                // TODO Display an error message
+            }
+        });
+    }
+
+    const searchProduct = () => {
         // TODO Add some validation here to make sure it's a valid product id
-        // Call product service to make an api call
         ProductService.getProductById(productIDValue).then((response) => {
             console.log(response);
             if (response && response.status === 200) {
@@ -57,15 +96,13 @@ const AdminModal = (props) => {
         });
     }
 
-    const searchOrder = (e) => {
-        e.preventDefault();
-        // TODO Add some validation here to make sure it's a valid order id
-        // Call order service to make an api call
-        OrderService.getOrderById(productIDValue).then((response) => {
+    const deleteProduct = () => {
+        // TODO Add some validation here to make sure it's a valid product id
+        ProductService.deleteProductById(productIDValue).then((response) => {
             console.log(response);
             if (response && response.status === 200) {
-                console.log("Order search successful.");
-                // TODO Display order information
+                console.log("Product deletion successful.");
+                // TODO Display deleted product id
             } else {
                 //Order not found.
                 // TODO Display an error message
@@ -73,15 +110,64 @@ const AdminModal = (props) => {
         });
     }
 
+    const getAllUsers = () => {
+        UserService.getAllUsers().then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("Get all users successful.");
+                // TODO Display user information
+            } else {
+                //Users not found
+                // TODO Display an error message
+            }
+        });
+    }
+
+    const searchUser = () => {
+        // TODO Add some validation here to make sure it's a valid user id
+        UserService.getUserById(userIDValue).then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("User search successful.");
+                // TODO Display user information
+            } else {
+                //User not found.
+                // TODO Display an error message
+            }
+        });
+    }
+
+    const createUser = (e) => {
+        // TODO add form validation before making API call
+
+        // grab data from the form
+
+        //make api call
+
+    }
+
+    const deleteUser = () => {
+        // TODO Add some validation here to make sure it's a valid user id
+        UserService.deleteUserById(userIDValue).then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("User deletion successful.");
+                // TODO Display deleted user id
+            } else {
+                //User not found.
+                // TODO Display an error message
+            }
+        });
+    }
+
     useEffect(() => {
-        console.log(showManageOrders);
-        console.log(showManageProducts);
-        console.log(showManageUsers);
         if (showManageOrders || showManageProducts || showManageUsers) {
             setShowBackButton(true);
         }
 
-    }, [showManageUsers, showManageProducts, showManageOrders]);
+        //TODO manage views for createOrder, createUser, and createProduct
+
+    }, [showManageUsers, showManageProducts, showManageOrders, showCreateOrder, showCreateUser, showCreateProduct]);
 
     return (
         <div style={{ display: 'flex' }}>
@@ -120,10 +206,10 @@ const AdminModal = (props) => {
                                         <Button className="order-search-btn admin-search-btn" type="submit"><BiSearch className="admin-search-btn-icon" /></Button>
                                     </div>
                                 </form>
-                                <Button className="manage-orders-btn">View all orders</Button>
+                                <Button className="manage-orders-btn" onClick={() => getAllOrders()}>View all orders</Button>
                                 <Button className="manage-orders-btn">Create a new order</Button>
                                 <Button className="manage-orders-btn">Update an existing order</Button>
-                                <Button className="manage-orders-btn">Delete an existing order</Button>
+                                <Button className="manage-orders-btn" onClick={() => deleteOrder()}>Delete an existing order</Button>
                             </div>
                         ) : null}
 
@@ -139,10 +225,10 @@ const AdminModal = (props) => {
                                         <Button className="product-search-btn admin-search-btn" type="submit"><BiSearch className="admin-search-btn-icon" /></Button>
                                     </div>
                                 </form>
-                                <Button className="manage-products-btn">View all products</Button>
+                                <Button className="manage-products-btn" onClick={() => getAllProducts()}>View all products</Button>
                                 <Button className="manage-products-btn">Create a new product</Button>
                                 <Button className="manage-products-btn">Update an existing product</Button>
-                                <Button className="manage-products-btn">Delete an existing product</Button>
+                                <Button className="manage-products-btn" onClick={() => deleteProduct()}>Delete an existing product</Button>
                             </div>
                         ) : null}
 
@@ -158,10 +244,10 @@ const AdminModal = (props) => {
                                         <Button className="user-search-btn admin-search-btn" type="submit"><BiSearch className="admin-search-btn-icon" /></Button>
                                     </div>
                                 </form>
-                                <Button className="manage-users-btn">View all users</Button>
+                                <Button className="manage-users-btn" onClick={() => getAllUsers()}>View all users</Button>
                                 <Button className="manage-users-btn">Create a new user</Button>
                                 <Button className="manage-users-btn">Update an existing user</Button>
-                                <Button className="manage-users-btn">Delete an existing user</Button>
+                                <Button className="manage-users-btn" onClick={() => deleteUser()}>Delete an existing user</Button>
                             </div>
                         ) : null}
 
