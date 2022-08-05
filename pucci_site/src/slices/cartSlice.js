@@ -12,13 +12,11 @@ export const cartSlice = createSlice({
 			state.cart.push(action.payload) 
 		},
 		removeFromCart: (state, action) => {
-			
+			var index = state.cart.indexOf(action)
+			state.cart.splice(index, 1)
 		},
-		changeQuantity: (state, action) => {
-			state.user = action.payload
-		},
-		clearCart: (state, action) => {
-			state.user = action.payload
+		clearCart: (state) => {
+			state.cart = []
 		}
 	}
 })
