@@ -16,6 +16,7 @@ import ProductService from "./services/product.service";
 import NotFound from "./components/NotFound/NotFound";
 import AuthService from "./services/auth.service";
 import Bag from "./components/Bag/Bag";
+import Views from "./Views.jsx";
 import AdminModal from "./components/AdminModal/AdminModal";
 Modal.setAppElement("#root");
 
@@ -98,14 +99,7 @@ function App() {
           <AdminModal isOpen={AdminView} handleClose={toggleAdminModal} />
         )}
 
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/bag" element={<Bag />} />
-          <Route path="/adidogs" element={<Adidogs />} />
-          <Route path="/page-not-found" element={<NotFound />} />
-          {/* <Route path="/admin" element={<Admin />} />*/}
-        </Routes>
+        <Views />
       </BrowserRouter>
       <Footer />
     </div>

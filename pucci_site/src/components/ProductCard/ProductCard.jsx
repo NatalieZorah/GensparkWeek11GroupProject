@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import { IoMdHeartEmpty } from "react-icons/io";
-import './ProductCard.css';
-import { useDispatch } from 'react-redux'
-import { addToCart } from '../../slices/cartSlice'
-import Toast from 'react-bootstrap/Toast';
+import "./ProductCard.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../slices/cartSlice";
+import Toast from "react-bootstrap/Toast";
 
 const ProductCard = (props) => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+
   const dispatch = useDispatch();
+
   const handleAddToCart = (e) => {
-    e.preventDefault()
-    dispatch(addToCart(props.product))
-    setShow(true)
-  }
+    e.preventDefault();
+    dispatch(addToCart(props.product));
+    setShow(true);
+  };
+
   return (
     <>
       <div className="product-card-container">
@@ -27,13 +30,19 @@ const ProductCard = (props) => {
           />
           <Card.Body>
             <Card.Title>{props.product.title}</Card.Title>
-            <Card.Text>
-              {props.product.description}
-            </Card.Text>
-            <Button variant="outline-dark" onClick={handleAddToCart}>Add to cart</Button>
+            <Card.Text>{props.product.description}</Card.Text>
+            <Button variant="outline-dark" onClick={handleAddToCart}>
+              Add to cart
+            </Button>
           </Card.Body>
         </Card>
-        <Toast className="toast" onClose={() => setShow(false)} show={show} delay={2000} autohide>
+        <Toast
+          className="toast"
+          onClose={() => setShow(false)}
+          show={show}
+          delay={2000}
+          autohide
+        >
           <Toast.Body>Added {props.product.title} to cart!</Toast.Body>
         </Toast>
       </div>
