@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/esm/Button';
 import "./LoginModal.css";
 import AuthService from '../../services/auth.service';
 import PulseLoader from "react-spinners/PulseLoader";
+import {useNavigate} from 'react-router-dom'
 
 const LoginModal = props => {
 
@@ -13,6 +14,7 @@ const LoginModal = props => {
   const [formErrors, setFormErrors] = useState({ username: "", password: "" });
   const [loginWait, setLoginWait] = useState(false);
   const [rememberUser, setRememberUser] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +48,8 @@ const LoginModal = props => {
             //Credentials not found.
             setLoginWait(false);
           }
-        });
+        })
+        .then(() => window.location.reload());
     } else {
       //Form validation failed.
       console.log("Form validation failed.");

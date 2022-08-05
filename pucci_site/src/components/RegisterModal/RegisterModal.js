@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import AuthService from '../../services/auth.service';
 import PulseLoader from "react-spinners/PulseLoader";
 import Alert from 'react-bootstrap/Alert';
+import {useNavigate} from 'react-router-dom'
 import './RegisterModal.css';
 
 
@@ -16,6 +17,7 @@ const RegisterModal = props => {
     const [ToSCheckbox, setToSCheckbox] = useState(false);
     const [registrationWait, setRegistrationWait] = useState(false);
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const navigate = useNavigate()
 
     const onTextChange = (e) => {
         const { name, value } = e.target;
@@ -53,8 +55,9 @@ const RegisterModal = props => {
                     if (response && response.status === 200) {
                         console.log("Registration success");
                         setRegistrationSuccess(true);
-                        setLoginWait(false);
+                        setRegistrationWait(false);
                         props.handleClose();
+                        navigate('/home');
                     } else {
                         //Registration failed
                         setRegistrationWait(false);
@@ -179,7 +182,7 @@ const RegisterModal = props => {
                         </div>
 
                         <div className="register-btn-wrapper">
-                            <Button className="register-btn" type="submit" disabled={!ToSCheckbox}>{(registrationWait) ? (<span>Registering<PulseLoader color="#e5dfd9" size="4" /></span>) : (<span>Register</span>)}</Button>
+                            <Button className="register-btn" type="submit" disabled={!ToSCheckbox}>{(registrationWait) ? (<span>Registering<PulseLoader color="#e5dfd9" /></span>) : (<span>Register</span>)}</Button>
                         </div>
                     </form>
                 </div>

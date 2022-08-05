@@ -28,11 +28,11 @@ function App() {
   const [users, setUsers] = useState(undefined);
   const [products, setProducts] = useState(undefined);
 
-  const logout = () => {
+  const logout = (e) => {
+    e.preventDefault()
     AuthService.logout();
     setCurrentUser('undefined');
     setLoginError("");
-    localStorage.removeItem('user');
     console.log("Logout successful.");
   };
 
