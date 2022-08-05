@@ -148,7 +148,7 @@ public class AuthController {
 
     user.setRoles(roles);
     userDao.save(user);
-    email.sendVerificationEmail(user, "http://localhost:8080/api/auth");
+//    email.sendVerificationEmail(user, "http://localhost:8080/api/auth");
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
