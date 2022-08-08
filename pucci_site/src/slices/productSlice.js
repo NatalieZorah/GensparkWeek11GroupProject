@@ -30,7 +30,6 @@ const productSlice = createSlice({
 				}
 			})
 			.addCase(fetchProducts.fulfilled, (state, action) => {
-				console.log(action)
 				state.products = (action.payload)
 				if (state.loading==='pending') {
 					state.loading = 'idle'

@@ -57,12 +57,11 @@ const RegisterModal = props => {
                         setRegistrationSuccess(true);
                         setRegistrationWait(false);
                         props.handleClose();
-                        navigate('/home');
                     } else {
                         //Registration failed
                         setRegistrationWait(false);
                     }
-                });
+                }).then(() => navigate('/home'));
         } else {
             //Form validation failed.
             console.log("Form validation failed.");
