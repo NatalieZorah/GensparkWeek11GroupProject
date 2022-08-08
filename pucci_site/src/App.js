@@ -18,6 +18,7 @@ import AuthService from "./services/auth.service";
 import Bag from "./components/Bag/Bag";
 import Views from "./Views.jsx";
 import AdminModal from "./components/AdminModal/AdminModal";
+import { useSelector } from "react-redux/";
 Modal.setAppElement("#root");
 
 function App() {
@@ -25,8 +26,6 @@ function App() {
   const [RegisterView, setRegisterView] = useState(false);
   const [AdminView, setAdminView] = useState(false);
   const [currentUser, setCurrentUser] = useState(localStorage.getItem('user'));
-  const [users, setUsers] = useState(undefined);
-  const [products, setProducts] = useState(undefined);
 
   const logout = (e) => {
     e.preventDefault()
@@ -36,19 +35,6 @@ function App() {
     console.log("Logout successful.");
   };
 
-  // const product = {
-  //   "name": "Black rattan lounger",
-  //   "price":"400"
-  // }
-
-  // ProductService.createProduct(product)
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.getAllProducts())
-  // .then(ProductService.getProductById(2))
-  // .thenProductService.deleteProductById(3)
 
   const toggleLoginModal = () => {
     //make sure all other modals are closed

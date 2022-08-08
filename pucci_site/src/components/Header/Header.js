@@ -19,8 +19,6 @@ const Navigation = (props) => {
     e.preventDefault();
     navigate("/bag");
   };
-
-  console.log(props.currentUser)
   const navigate = useNavigate();
   return (
     <div className="navigation">

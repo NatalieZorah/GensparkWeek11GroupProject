@@ -5,6 +5,8 @@ import "./LoginModal.css";
 import AuthService from '../../services/auth.service';
 import PulseLoader from "react-spinners/PulseLoader";
 import {useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../slices/authSlice';
 
 const LoginModal = props => {
 
@@ -15,6 +17,12 @@ const LoginModal = props => {
   const [loginWait, setLoginWait] = useState(false);
   const [rememberUser, setRememberUser] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+  const dispatchLogin = (payload) => {
+    dispatch(loginUser(payload))  
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -37,19 +45,27 @@ const LoginModal = props => {
       //Validation passed
       console.log("Validation passed.");
       setLoginWait(true);
-      AuthService.login(formValues.username, formValues.password)
-        .then((response) => {
-          console.log(response);
-          if (response && response.status === 200) {
-            console.log("Sign in success");
-            setLoginWait(false);
-            props.handleClose();
-          } else {
-            //Credentials not found.
-            setLoginWait(false);
-          }
-        })
-        .then(() => window.location.reload());
+      let payload = 
+      dispatchLogin(
+        {
+          "username": formValues.username,
+          "password": formValues.password
+        }
+      )
+      // AuthService.login(formValues.username, formValues.password)
+      //   .then((response) => {
+      //     if (response && response.status === 200) {
+      //       console.log("Sign in success");
+      //       setLoginWait(false);
+      //       props.handleClose();
+      //     window.location.reload()
+      //     } else {
+      //       //Credentials not found.
+      //       setLoginWait(false);
+      //     }
+      //   })
+      //   .then((response) => {
+      //   });
     } else {
       //Form validation failed.
       console.log("Form validation failed.");
@@ -114,7 +130,7 @@ const LoginModal = props => {
               </div>
 
               <div className="login-btn-wrapper">
-                <Button className="login-btn" type="submit">{(loginWait) ? (<span>Signing in<PulseLoader color="#e5dfd9" size="4" /></span>) : (<span>Sign in</span>)}</Button>
+                <Button className="login-btn" type="submit">{(loginWait) ? (<span>Signing in<PulseLoader color="#e5dfd9"/></span>) : (<span>Sign in</span>)}</Button>
               </div>
             </form>
 
