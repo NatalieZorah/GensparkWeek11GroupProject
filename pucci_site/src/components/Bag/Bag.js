@@ -1,13 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { clearCart, removeFromCart } from "../../slices/cartSlice";
 import CarouselFade from "../Carousel/Carousel";
 import "./Bag.css";
 
 export default function Bag(props) {
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
   var subtotal = 0;
+  const navigate = useNavigate()
 
 	const dispatch = useDispatch()
 
@@ -45,7 +46,7 @@ export default function Bag(props) {
         </div>
         <div className="bag-cart grid-col-span-12">{displayCart}</div>
         <div className="bag-subtotal">Subtotal ${subtotal}</div>
-        <button className="btn btn-success">Checkout</button>
+        <button className="btn btn-success" onClick={() => navigate("/checkout")}>Checkout</button>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ package com.genspark.Pucci.Services;
 
 import com.genspark.Pucci.Daos.UserDao;
 import com.genspark.Pucci.Entities.User;
+import com.genspark.Pucci.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,8 @@ import java.util.Optional;
 
 @Service
 public class UserService implements UserServiceInterface{
-
+    @Autowired
+    JwtUtils jwtUtils;
     @Autowired
     private UserDao userDao;
 
@@ -47,5 +49,12 @@ public class UserService implements UserServiceInterface{
     public String deleteUser(int user_id) {
         this.userDao.deleteById(user_id);
         return "User " + user_id + " has been deleted";
+    }
+
+    public User getUserFromHeader(String authHeader) {
+        String jwt = authHeader.split("\\s+")[1];
+        String username = jwtUtils.getUserNameFromJwtToken(jwt);
+        User user = this.userDao.findByUsername(username).orElse(null);
+        return user;
     }
 }

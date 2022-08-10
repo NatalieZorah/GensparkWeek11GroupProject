@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Document
-public class Order {
+public class MongoOrder {
     @Id
 
     private String _id;
@@ -60,9 +60,20 @@ public class Order {
 
     private LocalDateTime createdOn = LocalDateTime.now();
 
-    public Order(List<Product> purchase_list, String user_id, double purchase_total) {
+    public MongoOrder(List<Product> purchase_list, String user_id, double purchase_total) {
         this.purchase_list = purchase_list;
         this.user_id = user_id;
         this.purchase_total = purchase_total;
+    }
+
+    @Override
+    public String toString() {
+        return "MongoOrder{" +
+                "_id='" + _id + '\'' +
+                ", purchase_list=" + purchase_list +
+                ", user_id='" + user_id + '\'' +
+                ", purchase_total=" + purchase_total +
+                ", createdOn=" + createdOn +
+                '}';
     }
 }
