@@ -120,6 +120,7 @@ const Checkout = () => {
 				<input type="text" size={4} pattern="[0-9]*" placeholder='MMYY' maxLength={4} value={expirationDate} onChange={e => setExpirationDate((v) => (e.target.validity.valid ? e.target.value : v))}/>
 				<input type="text" size={3} pattern="[0-9]*" placeholder='CVC' maxLength={3} value={cvc} onChange={e => setCvc((v) => (e.target.validity.valid ? e.target.value : v))}/>
 			</form>
+			<button className='place-order btn-success' onClick={placeOrder}>Place Order</button>
 		</div>
 		
 		<div className='details'>
@@ -129,7 +130,6 @@ const Checkout = () => {
 			<p>Shipping: {shipping}</p>
 			<p>Total: ${total}</p>
 		</div>
-		<button className='place-order btn-success' onClick={placeOrder}>Place Order</button>
 	</div>
   )
 }
