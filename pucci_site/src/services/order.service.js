@@ -1,12 +1,15 @@
+import authHeader from './auth-header';
 import axios from './axios';
 
 class OrderService {
 
-    ORDERS_URL = '/orders';
+    ORDERS_URL = 'mongo/orders';
+    API_URL = "http://localhost:8080/api/"
+
 
     getAllOrders() {
         return axios.get(
-            this.ORDERS_URL,
+            this.API_URL + this.ORDERS_URL,
             { headers: { 'Content-Type': 'application/json' } }
         ).then(function (response) {
             console.log(response)
@@ -31,20 +34,18 @@ class OrderService {
         });
     };
 
-    createOrder(purchase_list, purchase_total) {
+    createOrder(purchase_list) {
         return axios.post(
-            this.ORDERS_URL,
+            this.API_URL + this.ORDERS_URL,
             {
-                headers: { 'Content-Type': 'application/json' },
-                data:
-                {
-                    purchase_list: purchase_list,
-                    purchase_total: purchase_total
-                }
-
-            }
+                purchase_list: purchase_list,
+            },
+            {
+                headers: authHeader()
+            } 
         ).then(function (response) {
             console.log(response)
+            localStorage.removeItem("cart")
             return response.data;
         }).catch(function (error) {
             console.log(error);

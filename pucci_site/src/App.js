@@ -18,7 +18,8 @@ import AuthService from "./services/auth.service";
 import Bag from "./components/Bag/Bag";
 import Views from "./Views.jsx";
 import AdminModal from "./components/AdminModal/AdminModal";
-import { useSelector } from "react-redux/";
+import { useDispatch } from "react-redux/";
+import { getCartFromStorage } from "./slices/cartSlice";
 Modal.setAppElement("#root");
 
 function App() {
@@ -26,6 +27,13 @@ function App() {
   const [RegisterView, setRegisterView] = useState(false);
   const [AdminView, setAdminView] = useState(false);
   const [currentUser, setCurrentUser] = useState(localStorage.getItem('user'));
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getCartFromStorage())
+  }, [])
+  
 
   const logout = (e) => {
     e.preventDefault()

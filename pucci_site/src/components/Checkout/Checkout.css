@@ -1,0 +1,20 @@
+.checkout {
+	display: grid;
+	grid-template-columns: 60% 40%;
+	grid-template-rows: 90% 10%;
+	height: 80vh;
+}
+
+
+.shipping-payment > form > input, select {
+    margin-top: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.place-order {
+    width: 10em;
+    border-radius: 15px;
+}

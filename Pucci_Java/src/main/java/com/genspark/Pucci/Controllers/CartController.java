@@ -8,6 +8,7 @@ import com.genspark.Pucci.Payload.request.cart.AddCartRequest;
 import com.genspark.Pucci.Payload.request.cart.RemoveProduct;
 import com.genspark.Pucci.Payload.request.cart.UpdateQuantityRequest;
 import com.genspark.Pucci.Services.CartServiceInterface;
+import com.genspark.Pucci.Services.UserService;
 import com.genspark.Pucci.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,8 @@ public class CartController {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserDao userDao;
+
+    private UserService userService;
 
     @Autowired
     private ProductDao productDao;
@@ -38,20 +40,20 @@ public class CartController {
     @GetMapping()
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Product> getCart(@RequestHeader("authorization") String authHeader) {
-        User user = this.getUserFromHeader(authHeader);
+        User user = userService.getUserFromHeader(authHeader);
         List<Product> cart = cartService.getCart(user);
         return cart;
     }
 
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
     public Product addToCart(@Valid @RequestBody AddCartRequest addCartRequest, @RequestHeader("authorization") String authHeader) {
-        Product product = cartService.addToCart(this.getUserFromHeader(authHeader), addCartRequest.getProduct_id());
+        Product product = cartService.addToCart(userService.getUserFromHeader(authHeader), addCartRequest.getProduct_id());
         return product;
     }
 
     @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updateQuantity(@Valid @RequestBody UpdateQuantityRequest updateQuantityRequest, @RequestHeader("authorization") String authHeader) {
-        User user = this.getUserFromHeader(authHeader);
+        User user = userService.getUserFromHeader(authHeader);
         cartService.changeQuantity(user, Integer.parseInt(updateQuantityRequest.getProduct_id()), Integer.parseInt(updateQuantityRequest.getQuantity()));
         return new ResponseEntity<String>("Updated quantity", HttpStatus.OK);
     }
@@ -61,10 +63,5 @@ public class CartController {
         return new ResponseEntity<String>("Product deleted", HttpStatus.OK);
     }
 
-    private User getUserFromHeader(String authHeader) {
-        String jwt = authHeader.split("\\s+")[1];
-        String username = jwtUtils.getUserNameFromJwtToken(jwt);
-        User user = this.userDao.findByUsername(username).orElse(null);
-        return user;
-    }
+
 }
