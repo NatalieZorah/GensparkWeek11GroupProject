@@ -34,9 +34,10 @@ const ProductCard = (props) => {
             <Button variant="outline-dark" onClick={handleAddToCart}>
               Add to cart
             </Button>
+            <div className="added-to-cart-overlay"></div>
           </Card.Body>
         </Card>
-        <Toast
+        {/* <Toast
           className="toast"
           onClose={() => setShow(false)}
           show={show}
@@ -44,7 +45,7 @@ const ProductCard = (props) => {
           autohide
         >
           <Toast.Body>Added {props.product.title} to cart!</Toast.Body>
-        </Toast>
+        </Toast> */}
       </div>
     </>
   );

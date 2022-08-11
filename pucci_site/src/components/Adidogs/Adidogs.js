@@ -1,6 +1,8 @@
 import React from "react";
 import CardGrid from "../CardGrid/CardGrid";
 import "./Adidogs.css";
+
+// these are all temporary until we have the database populated
 import PlaidJacket from "./../../assets/images/products/plaid-jacket.jpg";
 import PlaidBed from "./../../assets/images/products/plaid-bowtie-bed.jpg";
 import OliveTurtleneck from "./../../assets/images/products/olive-turtle-neck.jpg";
@@ -10,6 +12,7 @@ import SherpaBed from "./../../assets/images/products/large-white-sherpa-bed.jpg
 import ChromeDish from "./../../assets/images/products/chrome-bone-dish.webp";
 import PinkNavyTop from "./../../assets/images/products/pink-navy-style-top.webp";
 
+// these are again temporary until database is populated
 const products = [
   {
     id: 1,
@@ -69,10 +72,11 @@ const products = [
   },
 ];
 
+// this defines the Adidogs component and is subject to additional configuration when time permits
 const Adidogs = () => {
   return (
     <div className="adidogs-container">
-      <div className="adidogs-card-container">
+      <div className="adidogs-card-container pucci-background-color-light">
         <CardGrid products={products} />
       </div>
     </div>

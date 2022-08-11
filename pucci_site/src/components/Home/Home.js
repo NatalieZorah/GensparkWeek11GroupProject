@@ -75,7 +75,7 @@ const Home = () => {
     <div className="home-container">
       <CarouselFade />
 
-      <div className="card-grid-container">
+      <div className="card-grid-container pucci-background-color-light">
         <CardGrid products={products} />
       </div>
     </div>

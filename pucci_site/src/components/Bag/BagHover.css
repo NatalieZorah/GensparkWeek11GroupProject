@@ -1,10 +1,7 @@
 .bag-hover {
-	position:absolute;
-	top: 50px;
-	left: 70px;
-	border: 1px solid black;
-	height: 25vh;
-	width: 12em;
-	z-index: 3;
-	background-color: white;
+  position: absolute;
+  top: 50px;
+  left: 70px;
+  z-index: 3;
+  background-color: var(--pucci-color-light);
 }

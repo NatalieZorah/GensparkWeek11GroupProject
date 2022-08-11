@@ -1,0 +1,135 @@
+/* likely to convert to SCSS and use post processing to eliminate unused classes */
+
+/* ----------------------------------------------------------------------- */
+/*       custom properties set asside as default values for use later      */
+/* ----------------------------------------------------------------------- */
+:root {
+  --pucci-color-dark: #1b1b1b;
+  --pucci-color-light: #e5dfd9;
+}
+
+/* ----------------------------------------------------------------------- */
+/*                 custom css classes for coloring schemes                 */
+/* ----------------------------------------------------------------------- */
+
+.pucci-background-color-light {
+  background-color: var(--pucci-color-light);
+}
+
+.pucci-background-color-dark {
+  background-color: var(--pucci-color-dark);
+}
+
+/* ----------------------------------------------------------------------- */
+/*               custom css classes for general layout tools               */
+/* ----------------------------------------------------------------------- */
+
+/* box styling specific to pucci */
+.pucci-border-box-dark {
+  border: 2px solid var(--pucci-color-dark);
+}
+
+/* text styling */
+.justify-text-start-left {
+  text-align: left;
+}
+
+.justify-text-center {
+  text-align: center;
+}
+
+.justify-text-end-right {
+  text-align: right;
+}
+
+/* ----------------------------------------------------------------------- */
+/* grid column layout classes */
+.grid-col-span-2 {
+  grid-column: span 2;
+}
+
+.grid-col-span-3 {
+  grid-column: span 3;
+}
+
+.grid-col-span-4 {
+  grid-column: span 4;
+}
+
+.grid-col-span-5 {
+  grid-column: span 5;
+}
+
+.grid-col-span-6 {
+  grid-column: span 6;
+}
+
+.grid-col-span-7 {
+  grid-column: span 7;
+}
+
+.grid-col-span-8 {
+  grid-column: span 8;
+}
+
+.grid-col-span-9 {
+  grid-column: span 9;
+}
+
+.grid-col-span-10 {
+  grid-column: span 10;
+}
+
+.grid-col-span-11 {
+  grid-column: span 11;
+}
+
+.grid-col-span-12 {
+  grid-column: span 12;
+}
+
+.grid-col-start-2 {
+  grid-column-start: 2;
+}
+
+.grid-col-start-3 {
+  grid-column-start: 3;
+}
+
+.grid-col-start-4 {
+  grid-column-start: 4;
+}
+
+.grid-col-start-5 {
+  grid-column-start: 5;
+}
+
+.grid-col-start-6 {
+  grid-column-start: 6;
+}
+
+.grid-col-start-7 {
+  grid-column-start: 7;
+}
+
+.grid-col-start-8 {
+  grid-column-start: 8;
+}
+
+.grid-col-start-9 {
+  grid-column-start: 9;
+}
+
+.grid-col-start-10 {
+  grid-column-start: 10;
+}
+
+.grid-col-start-11 {
+  grid-column-start: 11;
+}
+
+/* ----------------------------------------------------------------------- */
+/* grid row layout classes -- try not to use these classes very much*/
+.grid-row-span-2 {
+  grid-row: span 2;
+}
