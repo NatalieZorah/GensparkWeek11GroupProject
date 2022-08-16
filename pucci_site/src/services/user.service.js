@@ -62,19 +62,7 @@ class UserService {
     updateUser(user) {
         return axios.put(
             this.USERS_URL,
-            {
-                headers: { 'Content-Type': 'application/json' },
-                data:
-                {
-                    user_id: user.user_id,
-                    sign_in_type: user.sign_in_type,
-                    name: user.name,
-                    username: user.username,
-                    password: user.password,
-                    email: user.email,
-                    phone: user.phone
-                }
-            }
+            user
         ).then(function (response) {
             console.log(response)
             return response.data;

@@ -29,16 +29,11 @@ class ProductService {
         });
     }
 
-    createProduct(name, price) {
-        return axios
-        .post(
-            this.PRODUCTS_URL, {
-            data:
-            {
-                name,
-                price
-            }
-        }).then(function (response) {
+    createProduct(product) {
+        return axios.post(
+            this.PRODUCTS_URL,
+            product
+        ).then(function (response) {
             console.log(response)
             return response.data;
         }).catch(function (error) {
