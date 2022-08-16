@@ -13,12 +13,18 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
 
-    @Autowired
-    @Column(name = "purchase_list")
-    @ElementCollection
+//    @Autowired
+//    @Column(name = "purchase_list")
+//    @ElementCollection
+//    private List<Product> purchase_list;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable( name = "purchase_list",
+                joinColumns = @JoinColumn(name = "order_id"),
+                inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<Product> purchase_list;
 
     @Column(nullable = false, updatable = false)

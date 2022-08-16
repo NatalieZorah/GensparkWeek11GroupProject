@@ -359,9 +359,6 @@ const AdminModal = (props) => {
                                     </div>
                                     <Button className="manage-products-btn" onClick={() => updateProduct()}>Update an existing product</Button>                                         
                                 </form>
-
-
-
                                 <Button className="manage-products-btn" onClick={() => deleteProduct()}>Delete an existing product</Button>
                             </div>
                         ) : null}

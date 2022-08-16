@@ -18,36 +18,31 @@ import AuthService from "./services/auth.service";
 import Bag from "./components/Bag/Bag";
 import Views from "./Views.jsx";
 import AdminModal from "./components/AdminModal/AdminModal";
+import { useDispatch } from "react-redux/";
+import { getCartFromStorage } from "./slices/cartSlice";
 Modal.setAppElement("#root");
 
 function App() {
   const [LoginView, setLoginView] = useState(false);
   const [RegisterView, setRegisterView] = useState(false);
   const [AdminView, setAdminView] = useState(false);
-  const [currentUser, setCurrentUser] = useState(undefined);
-  const [users, setUsers] = useState(undefined);
-  const [products, setProducts] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem('user'));
+  const dispatch = useDispatch();
 
-  const Logout = () => {
+
+  useEffect(() => {
+    dispatch(getCartFromStorage())
+  }, [])
+  
+
+  const Logout = (e) => {
+    e.preventDefault()
     AuthService.logout();
     setCurrentUser(undefined);
     setLoginError("");
-    console.log("Logout successful.");
+    console.log("Logout successfully");
   };
 
-  // const product = {
-  //   "name": "Black rattan lounger",
-  //   "price":"400"
-  // }
-
-  // ProductService.createProduct(product)
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.createProduct(product))
-  // .then(ProductService.getAllProducts())
-  // .then(ProductService.getProductById(2))
-  // .thenProductService.deleteProductById(3)
 
   const toggleLoginModal = () => {
     //make sure all other modals are closed

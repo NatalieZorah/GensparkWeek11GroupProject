@@ -34,7 +34,7 @@ const Navigation = (props) => {
 
               {/* If a user is logged in */}
               {props.currentUser ? (
-                <button className="nav-login-btn" onClick={props.Logout}>
+                <button className="nav-login-btn" onClick={props.logout}>
                   Logout
                 </button>
               ) : (
@@ -153,10 +153,6 @@ const Navigation = (props) => {
 };
 
 const Header = (props) => {
-  const logout = (e) => {
-    localStorage.removeItem("user");
-    window.location.reload();
-  };
 
   const bag = {};
 
@@ -167,7 +163,7 @@ const Header = (props) => {
         onRegisterClick={props.onRegisterClick}
         onAdminClick={props.onAdminClick}
         currentUser={props.currentUser}
-        logout={logout}
+        logout={props.onLogoutClick}
         onBagClick={props.onBagClick}
       />
     </div>
