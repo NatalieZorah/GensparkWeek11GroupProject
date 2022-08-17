@@ -4,7 +4,7 @@ import CorgiSofa from "./../../assets/images/products/gucci-sofa-corgi.jpg";
 import GucciPets from "./../../assets/images/products/gucci-pets.png";
 import BlueCat from "./../../assets/images/products/blue-cat.jpg";
 
-import "./Carousel.css";
+import "../../styles/static elements/Carousel.css";
 const CarouselItems = {
   MonogramHarness,
   CorgiSofa,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { IoMdHeartEmpty } from "react-icons/io";
-import "./ProductCard.css";
+import "../../styles/card grid/ProductCard.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../slices/cartSlice";
 import Toast from "react-bootstrap/Toast";

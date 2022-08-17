@@ -6,7 +6,7 @@ import UserService from "../../services/user.service";
 import OrderService from "../../services/order.service";
 import { BiSearch } from "react-icons/bi";
 import Form from "react-bootstrap/Form";
-import "./AdminModal.css";
+import "../../styles/modals/AdminModal.css";
 
 const AdminModal = (props) => {
   const modalPosition = React.useState("center");

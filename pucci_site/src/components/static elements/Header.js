@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsBag } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
-import Bag from "../Bag/Bag";
-import "./Header.css";
-import BagHover from "../Bag/BagHover";
+import "../../styles/static elements/Header.css";
+import BagHover from "../bag/BagHover";
 import { useNavigate, NavLink } from "react-router-dom";
 
 const Navigation = (props) => {
@@ -27,10 +26,11 @@ const Navigation = (props) => {
           <div className="col-xs-12 col-sm-12 col-md-12">
             <h1 className="title pucci-logo">P U C C I </h1>
             <div className="nav-user-btn-container">
-
               {/* If a user is logged in and is type admin*/}
               {/* {props.currentUser && props.currentUser.roles[1].name === "ROLE_ADMIN" ? (<button className="nav-login-btn">Admin Settings</button>): ""} */}
-              <button className="nav-login-btn" onClick={props.onAdminClick}>Admin Settings</button>
+              <button className="nav-login-btn" onClick={props.onAdminClick}>
+                Admin Settings
+              </button>
 
               {/* If a user is logged in */}
               {props.currentUser ? (
@@ -153,7 +153,6 @@ const Navigation = (props) => {
 };
 
 const Header = (props) => {
-
   const bag = {};
 
   return (

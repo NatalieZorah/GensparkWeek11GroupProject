@@ -3,7 +3,7 @@
   position: relative;
   font-family: sans-serif;
   display: grid;
-  grid-template-columns: repeat(11, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   justify-content: center;
 }
 
@@ -23,29 +23,11 @@
 
 .bag-title > .column-title-header,
 .cart-header,
+.checkout-header,
 .bag-subtotal > span {
   font-family: GucciFont, serif;
   font-weight: bold;
   display: inline-block;
-}
-
-.bag-product > span {
-  font-family: GucciFont, serif;
-  display: inline-block;
-}
-
-.remove-item-from-bag {
-  cursor: pointer;
-}
-
-.remove-icon {
-  margin-left: 5px;
-  height: 15px;
-  transition: 0.3s cubic-bezier(0.5, -1.5, 0.5, 2.5);
-}
-
-.remove-icon:hover {
-  transform: scale(2);
 }
 
 .subtotal-title {
@@ -56,7 +38,7 @@
   border-bottom-right-radius: var(--cart-border-radius);
 }
 
-.bag-container > button {
+.checkout-button {
   background-color: var(--pucci-color-dark);
   color: var(--pucci-color-light);
   cursor: pointer;

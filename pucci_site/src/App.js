@@ -2,22 +2,19 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import Modal from "react-modal";
-import LoginModal from "./components/LoginModal/LoginModal";
-import RegisterModal from "./components/RegisterModal/RegisterModal";
-import Home from "./components/Home/Home";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Adidogs from "./components/Adidogs/Adidogs";
+import LoginModal from "./components/modals/LoginModal";
+import RegisterModal from "./components/modals/RegisterModal";
+import Header from "./components/static elements/Header";
+import Footer from "./components/static elements/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MailService from "./services/mail.service";
 import UserService from "./services/user.service";
 import OrderService from "./services/order.service";
 import ProductService from "./services/product.service";
-import NotFound from "./components/NotFound/NotFound";
+import NotFound from "./components/pages/NotFound";
 import AuthService from "./services/auth.service";
-import Bag from "./components/Bag/Bag";
 import Views from "./Views.jsx";
-import AdminModal from "./components/AdminModal/AdminModal";
+import AdminModal from "./components/modals/AdminModal";
 import { useDispatch } from "react-redux/";
 import { getCartFromStorage } from "./slices/cartSlice";
 Modal.setAppElement("#root");
@@ -26,23 +23,20 @@ function App() {
   const [LoginView, setLoginView] = useState(false);
   const [RegisterView, setRegisterView] = useState(false);
   const [AdminView, setAdminView] = useState(false);
-  const [currentUser, setCurrentUser] = useState(localStorage.getItem('user'));
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem("user"));
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    dispatch(getCartFromStorage())
-  }, [])
-  
+    dispatch(getCartFromStorage());
+  });
 
   const logout = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     AuthService.logout();
-    setCurrentUser('undefined');
+    setCurrentUser("undefined");
     setLoginError("");
     console.log("Logout successful.");
   };
-
 
   const toggleLoginModal = () => {
     //make sure all other modals are closed
@@ -50,7 +44,6 @@ function App() {
     setRegisterView(false);
 
     setLoginView(!LoginView);
-
   };
 
   const toggleRegisterModal = () => {
@@ -69,8 +62,6 @@ function App() {
     setAdminView(!AdminView);
   };
 
-
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -83,11 +74,18 @@ function App() {
         />
 
         {LoginView && (
-          <LoginModal isOpen={LoginView} handleClose={toggleLoginModal} setCurrentUser={setCurrentUser} />
+          <LoginModal
+            isOpen={LoginView}
+            handleClose={toggleLoginModal}
+            setCurrentUser={setCurrentUser}
+          />
         )}
 
         {RegisterView && (
-          <RegisterModal isOpen={RegisterView} handleClose={toggleRegisterModal} />
+          <RegisterModal
+            isOpen={RegisterView}
+            handleClose={toggleRegisterModal}
+          />
         )}
 
         {AdminView && (

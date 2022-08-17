@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Modal from "react-modal";
 import Button from "react-bootstrap/esm/Button";
-import "./LoginModal.css";
+import "../../styles/modals/LoginModal.css";
 import AuthService from "../../services/auth.service";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useNavigate } from "react-router-dom";

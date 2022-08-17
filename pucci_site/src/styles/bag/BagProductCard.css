@@ -1,0 +1,26 @@
+.bag-product {
+  font-family: GucciFont, serif;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  min-width: 250px;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 8px 8px 3px #1b1b1bbb;
+}
+
+.remove-item-button {
+  background-color: red;
+  border: none;
+  width: 1rem;
+  height: 1rem;
+  margin: none;
+  padding: none;
+  border-radius: 50%;
+  color: var(--pucci-color-light);
+  display: inline;
+}
+
+.bag-product > span {
+  font-family: GucciFont, serif;
+  display: inline-block;
+}
