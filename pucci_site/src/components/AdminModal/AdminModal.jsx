@@ -30,17 +30,17 @@ const AdminModal = (props) => {
     const [updateOrderList, setUpdateOrderList] = useState([]);
 
 
-    const resetView = () => {
-        setShowManageOrders(false);
-        setShowManageProducts(false);
-        setShowManageUsers(false);
+    // const resetView = () => {
+    //     setShowManageOrders(false);
+    //     setShowManageProducts(false);
+    //     setShowManageUsers(false);
 
-        setShowCreateUser(false);
-        setShowCreateProduct(false);
-        setShowCreateOrder(false);
+    //     setShowCreateUser(false);
+    //     setShowCreateProduct(false);
+    //     setShowCreateOrder(false);
 
-        setShowBackButton(false);
-    }
+    //     setShowBackButton(false);
+    // }
 
     const getAllOrders = () => {
         OrderService.getAllOrders().then((response) => {
@@ -261,14 +261,14 @@ const AdminModal = (props) => {
         });
     }
 
-    useEffect(() => {
-        if (showManageOrders || showManageProducts || showManageUsers) {
-            setShowBackButton(true);
-        }
+    // useEffect(() => {
+    //     if (showManageOrders || showManageProducts || showManageUsers) {
+    //         setShowBackButton(true);
+    //     }
 
-        //TODO manage views for createOrder, createUser, and createProduct
+    //     //TODO manage views for createOrder, createUser, and createProduct
 
-    }, [showManageUsers, showManageProducts, showManageOrders, showCreateOrder, showCreateUser, showCreateProduct]);
+    // }, [showManageUsers, showManageProducts, showManageOrders, showCreateOrder, showCreateUser, showCreateProduct]);
 
     return (
         <div style={{ display: 'flex' }}>

@@ -6,6 +6,8 @@ import Bag from "../Bag/Bag";
 import "./Header.css";
 import BagHover from "../Bag/BagHover";
 import { useNavigate, NavLink } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const Navigation = (props) => {
   const [isHover, setIsHover] = useState(false);
@@ -30,11 +32,22 @@ const Navigation = (props) => {
 
               {/* If a user is logged in and is type admin*/}
               {/* {props.currentUser && props.currentUser.roles[1].name === "ROLE_ADMIN" ? (<button className="nav-login-btn">Admin Settings</button>): ""} */}
-              <button className="nav-login-btn" onClick={props.onAdminClick}>Admin Settings</button>
+              {/* <button className="nav-login-btn" onClick={props.onAdminClick}>Admin settings</button> */}
+              <Dropdown className="nav-login-btn">
+                <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                  Admin settings
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/ordersettings">Order settings</Dropdown.Item>
+                  <Dropdown.Item href="/productsettings">Product settings</Dropdown.Item>
+                  <Dropdown.Item href="/usersettings">User settings</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
 
               {/* If a user is logged in */}
               {props.currentUser ? (
-                <button className="nav-login-btn" onClick={props.logout}>
+                <button className="nav-login-btn" onClick={props.Logout}>
                   Logout
                 </button>
               ) : (
@@ -161,9 +174,8 @@ const Header = (props) => {
       <Navigation
         onLoginClick={props.onLoginClick}
         onRegisterClick={props.onRegisterClick}
-        onAdminClick={props.onAdminClick}
         currentUser={props.currentUser}
-        logout={props.onLogoutClick}
+        Logout={props.onLogoutClick}
         onBagClick={props.onBagClick}
       />
     </div>

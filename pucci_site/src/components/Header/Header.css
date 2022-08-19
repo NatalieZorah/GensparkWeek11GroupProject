@@ -76,3 +76,18 @@
 .nav-search-btn-icon {
   font-size: 20px;
 }
+
+.btn-dark {
+  border-color: var(--pucci-color-dark);
+  background-color: var(--pucci-color-dark);
+  color: var(--pucci-color-light);
+  font-size: 12px;
+}
+
+.dropdown-item {
+  font-size: 14px;
+}
+
+.dropdown-item:active {
+  background-color: lightgray;
+}
