@@ -4,6 +4,7 @@ import { BiSearch } from "react-icons/bi";
 import Form from 'react-bootstrap/Form';
 import AuthService from '../../services/auth.service';
 import Button from 'react-bootstrap/esm/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import './OrderSettings.css'
 
 const OrderSettings = () => {
@@ -58,31 +59,48 @@ const OrderSettings = () => {
     }
 
     return (
-        <div className="manage-orders-content-container">
-            <form className="order-search-wrapper search-wrapper">
-                <div className="order-search-input-wrapper admin-search-input-wrapper">
-                    <input type="text" className="order-search-input admin-search-input" name="orderid" placeholder="Search for order by id" onChange={e => setOrderIDValue(e.target.value)} value={orderIDValue} required />
-                </div>
+        <>
+            <div className="admin-page-container">
+                <ListGroup>
+                    <ListGroup.Item action href="/ordersettings">
+                        Order settings
+                    </ListGroup.Item>
+                    <ListGroup.Item action href="/productsettings">
+                        Product settings
+                    </ListGroup.Item>
+                    <ListGroup.Item action href="/usersettings">
+                        User settings
+                    </ListGroup.Item>
+                </ListGroup>
 
-                <div className="manage-orders-btn-wrapper search-btn-wrapper">
-                    <Button className="order-search-btn admin-search-btn" onClick={() => searchOrder()}><BiSearch className="admin-search-btn-icon" /></Button>
-                </div>
-            </form>
-            <Button className="manage-orders-btn" onClick={() => getAllOrders()}>View all orders</Button>
+                <div className="manage-orders-content-container">
+                    <form className="order-search-wrapper search-wrapper">
+                        <div className="order-search-input-wrapper admin-search-input-wrapper">
+                            <input type="text" className="order-search-input admin-search-input" name="orderid" placeholder="Search for order by id" onChange={e => setOrderIDValue(e.target.value)} value={orderIDValue} required />
+                        </div>
 
-            <form onSubmit={createOrder} className="order-create-wrapper create-wrapper">
-                <div className="order-create-input wrapper admin-create-input-wrapper">
-                    {/* TODO Order creation is a bit more complex than other create methods. Needs dropdown or chip select.*/}
-                    {/* https://www.npmjs.com/package/react-multi-select-component */}
-                </div>
-                <div className="create-order-btn-wrapper">
-                    <Button className="manage-orders-btn" type="submit">Create a new order</Button>
-                </div>
-            </form>
+                        <div className="manage-orders-btn-wrapper search-btn-wrapper">
+                            <Button className="order-search-btn admin-search-btn" onClick={() => searchOrder()}><BiSearch className="admin-search-btn-icon" /></Button>
+                        </div>
+                    </form>
+                    <Button className="manage-orders-btn" onClick={() => getAllOrders()}>View all orders</Button>
 
-            <Button className="manage-orders-btn">Update an existing order</Button>
-            <Button className="manage-orders-btn" onClick={() => deleteOrder()}>Delete an existing order</Button>
-        </div>
+                    <form onSubmit={createOrder} className="order-create-wrapper create-wrapper">
+                        <div className="order-create-input wrapper admin-create-input-wrapper">
+                            {/* TODO Order creation is a bit more complex than other create methods. Needs dropdown or chip select.*/}
+                            {/* https://www.npmjs.com/package/react-multi-select-component */}
+                        </div>
+                        <div className="create-order-btn-wrapper">
+                            <Button className="manage-orders-btn" type="submit">Create a new order</Button>
+                        </div>
+                    </form>
+
+                    <Button className="manage-orders-btn">Update an existing order</Button>
+                    <Button className="manage-orders-btn" onClick={() => deleteOrder()}>Delete an existing order</Button>
+                </div>
+            </div>
+        </>
+
     )
 }
 

@@ -16,88 +16,87 @@ const ProductSettings = () => {
     const [createProductValues, setCreateProductValues] = useState({ name: "", price: "" });
     const [updateProductValues, setUpdateProductValues] = useState({ name: "", price: "" });
 
-    const getAllUsers = () => {
-        UserService.getAllUsers().then((response) => {
+    const getAllProducts = () => {
+        ProductService.getAllProducts().then((response) => {
             console.log(response);
             if (response && response.status === 200) {
-                console.log("Get all users successful.");
-                // TODO Display user information
+                console.log("Get all products successful.");
+                // TODO Display product information
             } else {
-                //Users not found
+                //Products not found
                 // TODO Display an error message
             }
         });
     }
 
-    const searchUser = () => {
-        // TODO Add some validation here to make sure it's a valid user id
-        UserService.getUserById(userIDValue).then((response) => {
+    const searchProduct = () => {
+        // TODO Add some validation here to make sure it's a valid product id
+        ProductService.getProductById(productIDValue).then((response) => {
             console.log(response);
             if (response && response.status === 200) {
-                console.log("User search successful.");
-                // TODO Display user information
+                console.log("Product search successful.");
+                // TODO Display product information
             } else {
-                //User not found.
+                //Product not found.
                 // TODO Display an error message
             }
         });
     }
 
-    const createUser = (e) => {
-        // TODO add form validation before making API call
+    const createProduct = () => {
+        //TODO add some validation to make sure inputs are valid
 
-        // grab data from the form
-        console.log(createUserValues);
-
-        //make api call
-        let name = createUserValues.firstname.trim() + " " + createUserValues.lastname.trim();
-        AuthService.register(createUserValues.username, createUserValues.email, createUserValues.password, name, createUserValues.phone)
-            .then((response) => {
-                console.log(response);
-                if (response && response.status === 200) {
-                    console.log("Registration success");
-                } else {
-                    //Registration failed
-                }
-            });
-    }
-
-    const updateUser = (e) => {
-        // TODO add form validation before making API call
-        let name = updateUserValues.firstname.trim() + " " + updateUserValues.lastname.trim();
-
-        let user = {
-            user_id: userIDValue,
-            sign_in_type: updateUserValues.sign_in_type,
-            name: name,
-            username: updateUserValues.username,
-            password: updateUserValues.password,
-            email: updateUserValues.email,
-            phone: updateUserValues.phone
+        const product = {
+            "name": createProductValues.name.trim(),
+            "price": createProductValues.price
         }
-        console.log(user);
 
-        UserService.updateUser(user).then((response) => {
+        ProductService.createProduct(product).then((response) => {
             console.log(response);
             if (response && response.status === 200) {
-                console.log("User update successful.");
-                // TODO Display user information
+                console.log("Product creation successful.");
+                // TODO Display product information
             } else {
-                //User not found.
+                //Product not found.
                 // TODO Display an error message
             }
         });
     }
 
-    const deleteUser = () => {
-        // TODO Add some validation here to make sure it's a valid user id
-        UserService.deleteUserById(userIDValue).then((response) => {
+    const updateProduct = () => {
+        //TODO add some validation to make sure inputs are valid
+
+        console.log(productIDValue);
+
+        let product = {
+            "id": productIDValue,
+            "name": updateProductValues.name,
+            "price": updateProductValues.price
+        }
+
+        console.log(product);
+
+        ProductService.updateProduct(product).then((response) => {
             console.log(response);
             if (response && response.status === 200) {
-                console.log("User deletion successful.");
-                // TODO Display deleted user id
+                console.log("Product update successful.");
+                // TODO Display product information
             } else {
-                //User not found.
+                //Product not found.
+                // TODO Display an error message
+            }
+        });
+    }
+
+    const deleteProduct = () => {
+        // TODO Add some validation here to make sure it's a valid product id
+        ProductService.deleteProductById(productIDValue).then((response) => {
+            console.log(response);
+            if (response && response.status === 200) {
+                console.log("Product deletion successful.");
+                // TODO Display deleted product id
+            } else {
+                //Order not found.
                 // TODO Display an error message
             }
         });
